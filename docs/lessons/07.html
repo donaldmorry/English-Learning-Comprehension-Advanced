@@ -3,32 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lesson 07 · Everything, All at Once — Advanced English</title>
+<title>Lesson 07. Everything, All at Once — Advanced English</title>
 <meta name="description" content="The transformer architecture and attention mechanisms. Mechanism explainer — precise, step-by-step, diagrammatic">
 <meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315151a'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23fffffd' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
-<script>
-(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
-</script>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
-<body class="lessonpage">
-<div class="progress"><div id="bar"></div></div><header class="topbar">
-  <a class="brand" href="../index.html"><span class="brand-mark">AE</span> Advanced English</a>
-  <div class="topbar-right"><span class="counter">07 <i>/</i> 50</span>
-    <button id="theme-toggle" class="iconbtn" type="button" aria-label="Switch between light and dark">
-      <span class="ico-sun" aria-hidden="true">&#9788;</span><span class="ico-moon" aria-hidden="true">&#9789;</span>
-    </button>
-  </div>
-</header>
-<main class="wrap lesson">
+<body>
+<header class="masthead"><div class="masthead-in"><a class="title-link" href="../index.html">Advanced English &middot; Reading and Vocabulary</a><span class="masthead-right"><span class="folio">Lesson 07 of 50</span><button id="theme-toggle" class="togglebtn" type="button" aria-label="Switch colour scheme"><span class="lbl-dark">Dark</span><span class="lbl-light">Light</span></button></span></div></header>
+<main class="wrap">
   <article>
-    <p class="eyebrow">Lesson 07</p>
-    <h1>Everything, All at Once</h1>
+    <header class="lesson-head">
+      <p class="label">Lesson 07</p>
+      <h1>Everything, All at Once</h1>
+    </header>
     <dl class="meta">
-      <dt>Topic</dt><dd>The transformer architecture and attention mechanisms</dd>
-      <dt>Style &amp; Register</dt><dd>Mechanism explainer — precise, step-by-step, diagrammatic</dd>
-      <dt>Level</dt><dd>C1–C2 &middot; 1067 words</dd>
+      <dt>Subject</dt><dd>The transformer architecture and attention mechanisms</dd>
+      <dt>Register</dt><dd>Mechanism explainer — precise, step-by-step, diagrammatic</dd>
+      <dt>Level</dt><dd>C1–C2</dd>
+      <dt>Extent</dt><dd>1,067 words</dd>
     </dl>
     <div class="passage">
 <p>To understand why one architecture came to dominate machine learning within five years of its publication, it helps to understand precisely what it replaced, and why the thing it replaced was so stubbornly inadequate.</p>
@@ -54,50 +48,46 @@
 <p>The final and least anticipated point is that none of this is specific to language. The mechanism assumes only that the input can be expressed as a set of elements that may be relevant to one another. Divide an image into patches and the same architecture performs image recognition. Feed it amino acid sequences and it predicts protein structure. Feed it audio, or moves in a board game, or sensor readings from a robot, and it works there too.</p>
 <p>A technique designed to resolve pronouns turned out to describe something more general: how to let a system decide, for itself and from data, what in its input is worth paying attention to. That, rather than any particular application, is why it won.</p>
     </div>
-    <h2 class="glosshead">Key Vocabulary</h2>
+    <h2 class="glosshead">Key vocabulary</h2>
     <dl class="gloss">
-<dt>stubbornly <span class="pos">adv.</span></dt><dd>persistently and resistant to change.</dd>
-<dt>inadequate <span class="pos">adj.</span></dt><dd>insufficient for the purpose required.</dd>
-<dt>recurrent <span class="pos">adj.</span></dt><dd>occurring repeatedly; here, feeding output back as input.</dd>
-<dt>afflicted <span class="pos">adj.</span></dt><dd>troubled or burdened by something harmful.</dd>
-<dt>fatal <span class="pos">adj.</span></dt><dd>decisive in causing failure.</dd>
-<dt>vector <span class="pos">n.</span></dt><dd>an ordered list of numbers representing a point or direction.</dd>
-<dt>overwrite <span class="pos">v.</span></dt><dd>to replace existing information with new information.</dd>
-<dt>decay <span class="pos">v.</span></dt><dd>to diminish progressively towards zero.</dd>
-<dt>exploit <span class="pos">v.</span></dt><dd>to make full and effective use of a resource.</dd>
-<dt>resolve <span class="pos">v.</span></dt><dd>to determine the correct interpretation of something ambiguous.</dd>
-<dt>containment <span class="pos">n.</span></dt><dd>the state of holding something inside.</dd>
-<dt>semantic <span class="pos">adj.</span></dt><dd>relating to meaning rather than form.</dd>
-<dt>project <span class="pos">v.</span></dt><dd>here, to transform data into a different representational space.</dd>
-<dt>alignment <span class="pos">n.</span></dt><dd>the degree to which two things point in the same direction.</dd>
-<dt>saturate <span class="pos">v.</span></dt><dd>to reach a limit beyond which a function stops responding.</dd>
-<dt>refinement <span class="pos">n.</span></dt><dd>a small improvement that increases precision.</dd>
-<dt>concatenate <span class="pos">v.</span></dt><dd>to join sequences end to end.</dd>
-<dt>interpretable <span class="pos">adj.</span></dt><dd>capable of being understood or explained by a human.</dd>
-<dt>permutation-invariant <span class="pos">adj.</span></dt><dd>producing the same result regardless of input order.</dd>
-<dt>inject <span class="pos">v.</span></dt><dd>to introduce something into a system deliberately.</dd>
-<dt>quadratic <span class="pos">adj.</span></dt><dd>growing in proportion to the square of a quantity.</dd>
-<dt>sparsity <span class="pos">n.</span></dt><dd>the property of having mostly zero or absent values.</dd>
+<div class="g"><dt>stubbornly <span class="pos">adv.</span></dt><dd>persistently and resistant to change.</dd></div>
+<div class="g"><dt>inadequate <span class="pos">adj.</span></dt><dd>insufficient for the purpose required.</dd></div>
+<div class="g"><dt>recurrent <span class="pos">adj.</span></dt><dd>occurring repeatedly; here, feeding output back as input.</dd></div>
+<div class="g"><dt>afflicted <span class="pos">adj.</span></dt><dd>troubled or burdened by something harmful.</dd></div>
+<div class="g"><dt>fatal <span class="pos">adj.</span></dt><dd>decisive in causing failure.</dd></div>
+<div class="g"><dt>vector <span class="pos">n.</span></dt><dd>an ordered list of numbers representing a point or direction.</dd></div>
+<div class="g"><dt>overwrite <span class="pos">v.</span></dt><dd>to replace existing information with new information.</dd></div>
+<div class="g"><dt>decay <span class="pos">v.</span></dt><dd>to diminish progressively towards zero.</dd></div>
+<div class="g"><dt>exploit <span class="pos">v.</span></dt><dd>to make full and effective use of a resource.</dd></div>
+<div class="g"><dt>resolve <span class="pos">v.</span></dt><dd>to determine the correct interpretation of something ambiguous.</dd></div>
+<div class="g"><dt>containment <span class="pos">n.</span></dt><dd>the state of holding something inside.</dd></div>
+<div class="g"><dt>semantic <span class="pos">adj.</span></dt><dd>relating to meaning rather than form.</dd></div>
+<div class="g"><dt>project <span class="pos">v.</span></dt><dd>here, to transform data into a different representational space.</dd></div>
+<div class="g"><dt>alignment <span class="pos">n.</span></dt><dd>the degree to which two things point in the same direction.</dd></div>
+<div class="g"><dt>saturate <span class="pos">v.</span></dt><dd>to reach a limit beyond which a function stops responding.</dd></div>
+<div class="g"><dt>refinement <span class="pos">n.</span></dt><dd>a small improvement that increases precision.</dd></div>
+<div class="g"><dt>concatenate <span class="pos">v.</span></dt><dd>to join sequences end to end.</dd></div>
+<div class="g"><dt>interpretable <span class="pos">adj.</span></dt><dd>capable of being understood or explained by a human.</dd></div>
+<div class="g"><dt>permutation-invariant <span class="pos">adj.</span></dt><dd>producing the same result regardless of input order.</dd></div>
+<div class="g"><dt>inject <span class="pos">v.</span></dt><dd>to introduce something into a system deliberately.</dd></div>
+<div class="g"><dt>quadratic <span class="pos">adj.</span></dt><dd>growing in proportion to the square of a quantity.</dd></div>
+<div class="g"><dt>sparsity <span class="pos">n.</span></dt><dd>the property of having mostly zero or absent values.</dd></div>
 </dl>
-    <h2 class="glosshead">Phrases &amp; Collocations</h2>
+    <h2 class="glosshead">Phrases and collocations</h2>
     <dl class="gloss">
-<dt>by construction</dt><dd>as an unavoidable consequence of how something is built.</dd>
-<dt>beneath the terminology</dt><dd>setting jargon aside; looking at the underlying idea.</dd>
-<dt>it follows immediately that…</dt><dd>a formal marker of a direct logical consequence.</dd>
-<dt>a corresponding penalty</dt><dd>a cost that arises directly from an advantage.</dd>
-<dt>the least anticipated point</dt><dd>the most surprising of several observations.</dd>
-<dt>turned out to describe</dt><dd>proved on reflection to be an account of something broader.</dd>
+<div class="g"><dt>by construction</dt><dd>as an unavoidable consequence of how something is built.</dd></div>
+<div class="g"><dt>beneath the terminology</dt><dd>setting jargon aside; looking at the underlying idea.</dd></div>
+<div class="g"><dt>it follows immediately that…</dt><dd>a formal marker of a direct logical consequence.</dd></div>
+<div class="g"><dt>a corresponding penalty</dt><dd>a cost that arises directly from an advantage.</dd></div>
+<div class="g"><dt>the least anticipated point</dt><dd>the most surprising of several observations.</dd></div>
+<div class="g"><dt>turned out to describe</dt><dd>proved on reflection to be an account of something broader.</dd></div>
 </dl>
   </article>
-  <nav class="pagenav"><a class="pn prev" href="06.html"><span>Previous</span><b>A Thousand Small Stupidities</b></a>
-<a class="pn next" href="08.html"><span>Next</span><b>The Shape of the Problem</b></a></nav>
-  <p class="backlink"><a href="../index.html">&larr; All fifty lessons</a></p>
+  <nav class="pagenav"><div class="pn prev"><span class="k">Preceding</span><a href="06.html">06. A Thousand Small Stupidities</a></div>
+<div class="pn next"><span class="k">Following</span><a href="08.html">08. The Shape of the Problem</a></div></nav>
+  <p class="backlink"><a href="../index.html">Return to the contents</a></p>
 </main>
-<footer class="foot">
-  <p><strong>Advanced English &mdash; Reading &amp; Vocabulary.</strong>
-     Fifty original passages at CEFR C1&ndash;C2.</p>
-  <p class="muted">Source and PDF on <a href="https://github.com/donaldmorry/English-Learning-Comprehension-Advanced">GitHub</a>.</p>
-</footer>
+<footer class="foot"><div class="foot-in"><p>Advanced English &mdash; Reading and Vocabulary. Fifty original passages at CEFR C1&ndash;C2.</p><p>Source, lesson files and the complete PDF: <a href="https://github.com/donaldmorry/English-Learning-Comprehension-Advanced">github.com/donaldmorry/English-Learning-Comprehension-Advanced</a></p></div></footer>
 <script src="../assets/site.js" defer></script>
 </body>
 </html>

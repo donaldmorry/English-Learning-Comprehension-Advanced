@@ -2,7 +2,7 @@
 
 **A 50-lesson reading course in contemporary non-fiction prose, at CEFR C1–C2.**
 
-### ▶ Read it online: **https://donaldmorry.github.io/English-Learning-Comprehension-Advanced/**
+**Read it online: <https://donaldmorry.github.io/English-Learning-Comprehension-Advanced/>**
 
 ---
 

@@ -19,7 +19,7 @@
   /* lesson filter on the index ------------------------------------ */
   var filter = document.getElementById('filter');
   if (filter) {
-    var rows = Array.prototype.slice.call(document.querySelectorAll('#rows .row'));
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#rows tr'));
     var none = document.getElementById('noresult');
     filter.addEventListener('input', function () {
       var q = filter.value.trim().toLowerCase();
@@ -31,19 +31,6 @@
       });
       if (none) none.hidden = shown !== 0;
     });
-  }
-
-  /* reading progress ---------------------------------------------- */
-  var bar = document.getElementById('bar');
-  if (bar) {
-    var tick = function () {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
-    };
-    document.addEventListener('scroll', tick, { passive: true });
-    window.addEventListener('resize', tick);
-    tick();
   }
 
   /* wide tables get their own scroll container -------------------- */
@@ -60,7 +47,7 @@
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     var tag = (e.target.tagName || '').toLowerCase();
     if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
-    var sel = e.key === 'ArrowLeft' ? '.pn.prev' : e.key === 'ArrowRight' ? '.pn.next' : null;
+    var sel = e.key === 'ArrowLeft' ? '.pn.prev a' : e.key === 'ArrowRight' ? '.pn.next a' : null;
     if (!sel) return;
     var link = document.querySelector(sel);
     if (link && link.href) window.location.href = link.href;

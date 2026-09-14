@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-"""Generate the static GitHub Pages site in docs/ from the lesson markdown."""
-import re, os, glob, json, shutil, html as ihtml
+"""Generate the static GitHub Pages site in docs/ from the lesson markdown.
+
+Setting is academic: unified serif, dense vertical rhythm, rules rather than
+boxes, and no pictographic characters anywhere in the output.
+"""
+import re, os, glob, json, html as ihtml
 import markdown
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,171 +49,194 @@ def parse(path):
     vocab = re.search(r'^## Key Vocabulary\n(.*?)\n## Phrases & Collocations', raw, re.S | re.M).group(1)
     colloc = re.search(r'^## Phrases & Collocations\n(.*)', raw, re.S | re.M).group(1)
     passage = re.sub(r'\n---\s*$', '\n', passage)
-    words = len(passage.split())
-    return dict(n=n, title=title, topic=topic, style=style, level=level, words=words,
-                passage=block(passage), vocab=parse_entries(vocab), colloc=parse_entries(colloc))
+    return dict(n=n, title=title, topic=topic, style=style, level=level,
+                words=len(passage.split()), passage=block(passage),
+                vocab=parse_entries(vocab), colloc=parse_entries(colloc))
 
 lessons = [parse(f) for f in sorted(glob.glob(os.path.join(ROOT, 'lessons', 'lesson-*.md')))]
-assert len(lessons) == 50
+assert len(lessons) == 50, len(lessons)
 
-# ---------------------------------------------------------------- templates
-def page(title, body, cls='', desc='', depth=0):
-    up = '../' * depth
-    return """<!DOCTYPE html>
+# A plain lettered favicon — no pictographic characters.
+FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
+           "%3Crect width='32' height='32' fill='%2315151a'/%3E"
+           "%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23fffffd'"
+           " text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E")
+
+SHELL = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title}</title>
-<meta name="description" content="{desc}">
+<title>__TITLE__</title>
+<meta name="description" content="__DESC__">
 <meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="{up}assets/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
-<script>
-(function(){{try{{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();
-</script>
+<link rel="icon" href="__FAVICON__">
+<link rel="stylesheet" href="__UP__assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
-<body class="{cls}">
-{body}
-<script src="{up}assets/site.js" defer></script>
+<body>
+__BODY__
+<script src="__UP__assets/site.js" defer></script>
 </body>
 </html>
-""".format(title=ihtml.escape(title), desc=ihtml.escape(desc), cls=cls, up=up, body=body)
+"""
 
-def topbar(depth=0, extra=''):
+def page(title, body, desc='', depth=0):
+    return (SHELL.replace('__TITLE__', ihtml.escape(title))
+                 .replace('__DESC__', ihtml.escape(desc))
+                 .replace('__FAVICON__', FAVICON)
+                 .replace('__UP__', '../' * depth)
+                 .replace('__BODY__', body))
+
+def masthead(depth=0, folio=''):
     up = '../' * depth
-    return """<header class="topbar">
-  <a class="brand" href="{up}index.html"><span class="brand-mark">AE</span> Advanced English</a>
-  <div class="topbar-right">{extra}
-    <button id="theme-toggle" class="iconbtn" type="button" aria-label="Switch between light and dark">
-      <span class="ico-sun" aria-hidden="true">&#9788;</span><span class="ico-moon" aria-hidden="true">&#9789;</span>
-    </button>
-  </div>
-</header>""".format(up=up, extra=extra)
+    f = '<span class="folio">%s</span>' % folio if folio else ''
+    return ('<header class="masthead"><div class="masthead-in">'
+            '<a class="title-link" href="%sindex.html">Advanced English &middot; Reading and Vocabulary</a>'
+            '<span class="masthead-right">%s'
+            '<button id="theme-toggle" class="togglebtn" type="button" '
+            'aria-label="Switch colour scheme">'
+            '<span class="lbl-dark">Dark</span><span class="lbl-light">Light</span>'
+            '</button></span></div></header>' % (up, f))
 
-FOOT = """<footer class="foot">
-  <p><strong>Advanced English &mdash; Reading &amp; Vocabulary.</strong>
-     Fifty original passages at CEFR C1&ndash;C2.</p>
-  <p class="muted">Source and PDF on <a href="https://github.com/{user}/{repo}">GitHub</a>.</p>
-</footer>""".format(user=USER, repo=REPO)
+FOOT = ('<footer class="foot"><div class="foot-in">'
+        '<p>Advanced English &mdash; Reading and Vocabulary. '
+        'Fifty original passages at CEFR C1&ndash;C2.</p>'
+        '<p>Source, lesson files and the complete PDF: '
+        '<a href="https://github.com/{u}/{r}">github.com/{u}/{r}</a></p>'
+        '</div></footer>').format(u=USER, r=REPO)
 
-# ---------------------------------------------------------------- index
+# ------------------------------------------------------------------ contents
 rows = []
 for L in lessons:
     rows.append(
-      '<a class="row" href="lessons/{n:02d}.html" data-search="{s}">'
-      '<span class="row-n">{n:02d}</span>'
-      '<span class="row-main"><span class="row-title">{t}</span>'
-      '<span class="row-topic">{tp}</span>'
-      '<span class="row-style">{st}</span></span>'
-      '<span class="row-go" aria-hidden="true">&rarr;</span></a>'.format(
-        n=L['n'], t=ihtml.escape(L['title']),
-        tp=ihtml.escape(L['topic']), st=ihtml.escape(L['style']),
+      '<tr data-search="{s}">'
+      '<td class="c-n">{n:02d}</td>'
+      '<td class="c-t"><a href="lessons/{n:02d}.html">{t}</a></td>'
+      '<td class="c-topic">{tp}</td>'
+      '<td class="c-reg">{st}</td></tr>'.format(
+        n=L['n'], t=ihtml.escape(L['title']), tp=ihtml.escape(L['topic']),
+        st=ihtml.escape(L['style']),
         s=ihtml.escape((L['title'] + ' ' + L['topic'] + ' ' + L['style']).lower())))
 
-index_body = topbar(0) + """
+index_body = masthead(0) + """
 <main class="wrap">
-  <section class="hero">
-    <p class="eyebrow">CEFR C1&ndash;C2 &middot; Reading &amp; Vocabulary</p>
-    <h1>Fifty passages that do not sound alike.</h1>
-    <p class="lede">A reading course for people who already read English comfortably and now
-    want to read it <em>well</em> &mdash; to handle the density, irony, hedging and
-    register-shifting of real professional prose. Nothing here has been simplified.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="lessons/01.html">Start with Lesson 01</a>
-      <a class="btn" href="about.html">How to use this course</a>
-      <a class="btn" href="Advanced-English-Reading-and-Vocabulary.pdf">Download the PDF</a>
+  <section class="frontmatter">
+    <p class="label">A reading course in contemporary non-fiction prose</p>
+    <h1>Advanced English: Reading and Vocabulary</h1>
+    <p class="abstract">Fifty original passages of approximately one thousand words,
+    each followed by a glossary of the advanced vocabulary it contains. Written for
+    readers at CEFR C1&ndash;C2 who are already comfortable in English and now want to
+    read it well: to handle the density, irony, hedging and register-shifting of real
+    professional prose. Nothing here has been simplified.</p>
+
+    <div class="colophon">
+      <div><span class="k">Lessons</span><span class="v">50</span></div>
+      <div><span class="k">Words per passage</span><span class="v">c. 1,000</span></div>
+      <div><span class="k">Glossed items</span><span class="v">1,400</span></div>
+      <div><span class="k">Distinct registers</span><span class="v">50</span></div>
     </div>
-    <ul class="stats">
-      <li><b>50</b><span>lessons</span></li>
-      <li><b>~1,000</b><span>words each</span></li>
-      <li><b>1,400</b><span>glossed items</span></li>
-      <li><b>50</b><span>distinct registers</span></li>
-    </ul>
+
+    <p class="actions">
+      <a href="lessons/01.html">Begin at Lesson 01</a>
+      <a href="about.html">Method and use</a>
+      <a href="Advanced-English-Reading-and-Vocabulary.pdf">Complete text (PDF, 263 pp.)</a>
+    </p>
   </section>
 
-  <section class="note">
-    <h2>The order is deliberately scrambled</h2>
-    <p>There are no units and no grouping by subject. Lesson 01 is a policy explainer on
-    digital currency; Lesson 02 is scene-driven reportage about de-extinction; Lesson 03 is a
-    contrarian essay on why machines can play chess and cannot fold laundry. No two
-    consecutive lessons come from the same field, and no two open in the same register.</p>
-    <p>Grouping material by subject is more comfortable to study and measurably worse to learn
-    from &mdash; it lets you settle into one vocabulary field and coast. Mixing forces you to
-    work out, every time, what kind of text you are in. <a href="lessons/23.html">Lesson 23</a>
-    explains the evidence, and is worth reading early.</p>
+  <hr class="rule-thin">
+
+  <section>
+    <h2>On the order of the lessons</h2>
+    <div class="standfirst">
+      <p>There are no units and no grouping by subject. Lesson 01 is a policy explainer
+      on digital currency; Lesson 02 is scene-driven reportage on de-extinction; Lesson 03
+      is a contrarian essay on why machines play chess well and fold laundry badly. Two
+      constraints were imposed on the sequence: no two consecutive lessons are drawn from
+      the same field, and no two open in the same register.</p>
+      <p>Material grouped by subject is more comfortable to study and measurably worse to
+      learn from, since grouping permits the reader to settle into one vocabulary field and
+      one register and coast. Interleaving obliges the reader to determine, on each
+      occasion, what kind of text is at hand. <a href="lessons/23.html">Lesson 23</a> sets
+      out the evidence, and is worth reading early.</p>
+    </div>
   </section>
 
-  <section class="listing">
-    <div class="listing-head">
-      <h2>All fifty lessons</h2>
-      <input id="filter" type="search" placeholder="Filter by title, topic or style&hellip;"
-             autocomplete="off" aria-label="Filter lessons">
+  <section>
+    <div class="contents-head">
+      <h2>Contents</h2>
+      <input id="filter" type="search" placeholder="Filter by title, subject or register"
+             autocomplete="off" aria-label="Filter the table of contents">
     </div>
-    <div id="rows" class="rows">
+    <table class="toc">
+      <thead><tr>
+        <th class="c-n">No.</th><th class="c-t">Title</th>
+        <th class="c-topic">Subject</th><th class="c-reg">Register</th>
+      </tr></thead>
+      <tbody id="rows">
 """ + '\n'.join(rows) + """
-    </div>
-    <p id="noresult" class="muted" hidden>No lesson matches that.</p>
+      </tbody>
+    </table>
+    <p id="noresult" class="muted" hidden>No lesson matches that term.</p>
   </section>
 </main>
 """ + FOOT
 
-# ---------------------------------------------------------------- about
-about_body = topbar(0) + """
+# ------------------------------------------------------------------ method
+about_body = masthead(0) + """
 <main class="wrap prose">
-  <h1>How to use this course</h1>
-  <p class="lede">Fifty lessons &middot; about 1,000 words of prose each &middot; 1,400 glossed
-  items &middot; CEFR C1&ndash;C2.</p>
+  <p class="label">Editorial note</p>
+  <h1>Method and use</h1>
+  <p class="abstract">Fifty lessons; approximately one thousand words of prose in each;
+  1,400 glossed items; CEFR C1&ndash;C2 throughout.</p>
+  <hr class="rule-firm">
 
-  <p>Each lesson opens with a header naming its subject and its style, so that you know what
-  kind of English you are entering before you begin. The passage follows. After it come
+  <p>Each lesson opens with a header naming its subject and its style, so that the reader
+  knows what kind of English is about to be entered. The passage follows. After it come
   twenty-two vocabulary items, defined in the sense the passage uses, and six multi-word
-  phrases &mdash; because fluency lives in collocation far more than in single words.</p>
+  phrases, since fluency resides in collocation far more than in single words.</p>
 
-  <h2>Six instructions worth following</h2>
-  <ol class="steps">
+  <h2>1. Procedure</h2>
+  <ol>
     <li><b>Read once for the argument.</b> Do not stop at unknown words. Afterwards ask
-        yourself: what is this writer claiming, and what is the evidence?</li>
-    <li><b>Read again with the glossary.</b> Now go slowly. Find each item back in the passage
-        and notice the company it keeps.</li>
-    <li><b>Name the register aloud.</b> The header tells you the style. Work out what produces
-        the effect &mdash; sentence length? contractions? passive voice? hedging verbs such as
-        <em>appear</em>, <em>suggest</em>, <em>may</em>?</li>
-    <li><b>Steal something.</b> Copy three sentences by hand into a notebook, then write your
-        own versions on a different subject.</li>
-    <li><b>Space it out.</b> One lesson every two or three days beats five in a weekend.
-        <a href="lessons/23.html">Lesson 23</a> explains exactly why.</li>
-    <li><b>Take them in order.</b> The sequence is already mixed for you. Re-sorting by subject
-        would undo the one thing the design is doing.</li>
+      what the writer is claiming, and on what evidence.</li>
+    <li><b>Read again with the glossary.</b> Now proceed slowly. Locate each item in the
+      passage and observe the company it keeps.</li>
+    <li><b>Identify the register aloud.</b> The header names the style; determine what
+      produces the effect. Sentence length? Contractions? Passive constructions? Hedging
+      verbs such as <em>appear</em>, <em>suggest</em>, <em>may</em>?</li>
+    <li><b>Imitate.</b> Copy three sentences by hand, then compose your own on an
+      unrelated subject.</li>
+    <li><b>Distribute the practice.</b> One lesson every two or three days is worth more
+      than five in a weekend. <a href="lessons/23.html">Lesson 23</a> gives the evidence.</li>
+    <li><b>Preserve the order.</b> The sequence is already interleaved. Re-sorting the
+      lessons by subject would defeat the one thing the arrangement is doing.</li>
   </ol>
 
-  <h2>What the course covers</h2>
-  <p>Thirty-eight of the fifty lessons sit in science and frontier technology: molecular
-  biology, machine learning, robotics, materials, energy, financial infrastructure,
-  cryptocurrency. The rest cover cities, language, archaeology, forensics, sport, food,
-  conservation, typography and the craft of working well &mdash; scattered throughout rather
-  than collected at the end, so that you finish with vocabulary for a laboratory
-  <em>and</em> for a conversation.</p>
+  <h2>2. Scope</h2>
+  <p>Thirty-eight of the fifty lessons are drawn from science and frontier technology:
+  molecular biology, machine learning, robotics, materials science, energy, financial
+  infrastructure and cryptocurrency. The remainder treat cities, language, archaeology,
+  forensic evidence, sport, food chemistry, conservation, typography and the conduct of
+  skilled work. These are distributed throughout rather than collected at the end, so that
+  the reader finishes with vocabulary suited to a laboratory and to a conversation alike.</p>
 
-  <h2>What it deliberately excludes</h2>
-  <p>No entertainment or celebrity material. No party politics or politically inflamed
-  disputes. No adult content. No religion or the supernatural. No verse and no song lyrics.
-  Everything here is prose about the observable world &mdash; which turns out to leave a great
-  deal of room.</p>
+  <h2>3. Exclusions</h2>
+  <p>The course contains no entertainment or celebrity material, no partisan or
+  politically inflamed argument, no adult content, and no treatment of religion or the
+  supernatural. There is no verse and there are no song lyrics. Every passage is prose
+  concerning the observable world, which proves to leave a great deal of room.</p>
 
-  <p class="backlink"><a href="index.html">&larr; All lessons</a></p>
+  <p class="backlink"><a href="index.html">Return to the contents</a></p>
 </main>
 """ + FOOT
 
-# ---------------------------------------------------------------- lessons
-def entry_html(items):
+# ------------------------------------------------------------------ lessons
+def gloss_html(items):
     out = ['<dl class="gloss">']
     for term, pos, definition in items:
-        if definition:
-            out.append('<dt>%s%s</dt><dd>%s</dd>' % (
-                term, (' <span class="pos">%s</span>' % ihtml.escape(pos)) if pos else '', definition))
-        else:
-            out.append('<dt>%s</dt><dd></dd>' % term)
+        p = ' <span class="pos">%s</span>' % ihtml.escape(pos) if pos else ''
+        out.append('<div class="g"><dt>%s%s</dt><dd>%s</dd></div>' % (term, p, definition))
     out.append('</dl>')
     return '\n'.join(out)
 
@@ -220,52 +247,58 @@ for i, L in enumerate(lessons):
     prev = lessons[i-1] if i > 0 else None
     nxt = lessons[i+1] if i < len(lessons)-1 else None
     nav = []
-    nav.append('<a class="pn prev" href="%02d.html"><span>Previous</span><b>%s</b></a>' %
-               (prev['n'], ihtml.escape(prev['title'])) if prev else '<span class="pn empty"></span>')
-    nav.append('<a class="pn next" href="%02d.html"><span>Next</span><b>%s</b></a>' %
-               (nxt['n'], ihtml.escape(nxt['title'])) if nxt else '<span class="pn empty"></span>')
-    counter = '<span class="counter">%02d <i>/</i> 50</span>' % L['n']
+    nav.append('<div class="pn prev"><span class="k">Preceding</span>'
+               '<a href="%02d.html">%02d. %s</a></div>' % (prev['n'], prev['n'], ihtml.escape(prev['title']))
+               if prev else '<div class="pn prev"></div>')
+    nav.append('<div class="pn next"><span class="k">Following</span>'
+               '<a href="%02d.html">%02d. %s</a></div>' % (nxt['n'], nxt['n'], ihtml.escape(nxt['title']))
+               if nxt else '<div class="pn next"></div>')
 
-    body = ('<div class="progress"><div id="bar"></div></div>' + topbar(1, counter) + """
-<main class="wrap lesson">
+    body = masthead(1, 'Lesson %02d of 50' % L['n']) + """
+<main class="wrap">
   <article>
-    <p class="eyebrow">Lesson {n:02d}</p>
-    <h1>{title}</h1>
+    <header class="lesson-head">
+      <p class="label">Lesson %(n)02d</p>
+      <h1>%(title)s</h1>
+    </header>
     <dl class="meta">
-      <dt>Topic</dt><dd>{topic}</dd>
-      <dt>Style &amp; Register</dt><dd>{style}</dd>
-      <dt>Level</dt><dd>{level} &middot; {words} words</dd>
+      <dt>Subject</dt><dd>%(topic)s</dd>
+      <dt>Register</dt><dd>%(style)s</dd>
+      <dt>Level</dt><dd>%(level)s</dd>
+      <dt>Extent</dt><dd>%(words)s words</dd>
     </dl>
     <div class="passage">
-{passage}
+%(passage)s
     </div>
-    <h2 class="glosshead">Key Vocabulary</h2>
-    {vocab}
-    <h2 class="glosshead">Phrases &amp; Collocations</h2>
-    {colloc}
+    <h2 class="glosshead">Key vocabulary</h2>
+    %(vocab)s
+    <h2 class="glosshead">Phrases and collocations</h2>
+    %(colloc)s
   </article>
-  <nav class="pagenav">{nav}</nav>
-  <p class="backlink"><a href="../index.html">&larr; All fifty lessons</a></p>
+  <nav class="pagenav">%(nav)s</nav>
+  <p class="backlink"><a href="../index.html">Return to the contents</a></p>
 </main>
-""".format(n=L['n'], title=ihtml.escape(L['title']), topic=ihtml.escape(L['topic']),
-           style=ihtml.escape(L['style']), level=ihtml.escape(L['level']), words=L['words'],
-           passage=L['passage'], vocab=entry_html(L['vocab']),
-           colloc=entry_html(L['colloc']), nav='\n'.join(nav)) + FOOT)
+""" % dict(n=L['n'], title=ihtml.escape(L['title']), topic=ihtml.escape(L['topic']),
+           style=ihtml.escape(L['style']), level=ihtml.escape(L['level']),
+           words='{:,}'.format(L['words']), passage=L['passage'],
+           vocab=gloss_html(L['vocab']), colloc=gloss_html(L['colloc']),
+           nav='\n'.join(nav)) + FOOT
 
-    html = page('Lesson %02d · %s — Advanced English' % (L['n'], L['title']), body,
-                cls='lessonpage', desc='%s. %s' % (L['topic'], L['style']), depth=1)
+    html = page('Lesson %02d. %s — Advanced English' % (L['n'], L['title']), body,
+                desc='%s. %s' % (L['topic'], L['style']), depth=1)
     open(os.path.join(DOCS, 'lessons', '%02d.html' % L['n']), 'w', encoding='utf-8').write(html)
 
 open(os.path.join(DOCS, 'index.html'), 'w', encoding='utf-8').write(
-    page('Advanced English — Reading & Vocabulary', index_body, cls='home',
-         desc='Fifty original C1-C2 reading passages with vocabulary glossaries, in fifty different registers.'))
+    page('Advanced English: Reading and Vocabulary', index_body,
+         desc='Fifty original C1-C2 reading passages with vocabulary glossaries, '
+              'in fifty distinct registers.'))
 open(os.path.join(DOCS, 'about.html'), 'w', encoding='utf-8').write(
-    page('How to use this course — Advanced English', about_body,
-         desc='How the course is built and how to work through it.'))
+    page('Method and use — Advanced English', about_body,
+         desc='How the course is constructed and how to work through it.'))
 open(os.path.join(DOCS, '.nojekyll'), 'w').write('')
 
 json.dump([{'n': L['n'], 'title': L['title'], 'topic': L['topic'], 'style': L['style'],
             'words': L['words']} for L in lessons],
           open(os.path.join(DOCS, 'lessons.json'), 'w'), indent=1)
 
-print('generated %d lesson pages + index + about' % len(lessons))
+print('generated %d lesson pages, contents and editorial note' % len(lessons))
