@@ -52,7 +52,7 @@ img { max-width: 100%; }
   margin-bottom: 1.6rem;
 }
 .masthead-in {
-  max-width: 54rem; margin: 0 auto; padding: .5rem 1rem;
+  max-width: 84rem; margin: 0 auto; padding: .5rem 1.1rem;
   display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
 }
 .masthead a.title-link {
@@ -81,7 +81,7 @@ img { max-width: 100%; }
 }
 
 /* ------------------------------------------------ page frame */
-.wrap { max-width: 54rem; margin: 0 auto; padding: 0 1rem 3rem; }
+.wrap { max-width: 84rem; margin: 0 auto; padding: 0 1.1rem 2.6rem; }
 
 h1 {
   font-family: var(--serif); font-weight: 600;
@@ -104,7 +104,7 @@ h3 { font-size: .98rem; font-weight: 600; margin: 1.3rem 0 .35rem; }
 
 /* ------------------------------------------------ front page */
 .frontmatter { padding-top: .4rem; }
-.frontmatter h1 { font-size: 1.95rem; max-width: 34ch; }
+.frontmatter h1 { font-size: 1.95rem; max-width: 30ch; }
 .rule-firm { border: 0; border-top: 1.5px solid var(--rule-firm); margin: 1rem 0; }
 .rule-thin { border: 0; border-top: .5px solid var(--rule); margin: 1.4rem 0; }
 
@@ -124,7 +124,7 @@ h3 { font-size: .98rem; font-weight: 600; margin: 1.3rem 0 .35rem; }
 .actions { margin: 1.1rem 0 0; font-size: .92rem; }
 .actions a { margin-right: 1.4rem; white-space: nowrap; }
 
-.standfirst { columns: 2; column-gap: 2.2rem; margin: 1.4rem 0 0; font-size: .95rem;
+.standfirst { columns: 3; column-gap: 2.4rem; margin: 1.4rem 0 0; font-size: .95rem;
               color: var(--ink-soft); text-align: justify; hyphens: auto; }
 .standfirst p { margin: 0 0 .7rem; break-inside: avoid; }
 .standfirst p:last-child { margin-bottom: 0; }
@@ -177,9 +177,8 @@ dl.meta dt {
 dl.meta dd { margin: 0; color: var(--ink-soft); }
 
 .passage {
-  font-size: 1.04rem; line-height: 1.56;
+  font-size: 1.04rem; line-height: 1.62;
   text-align: justify; hyphens: auto; -webkit-hyphens: auto;
-  max-width: 40rem;
 }
 .passage p { margin: 0 0 .72rem; }
 .passage p + p { text-indent: 0; }
@@ -206,7 +205,7 @@ dl.meta dd { margin: 0; color: var(--ink-soft); }
 .passage thead th { border-bottom: 1px solid var(--rule-firm); font-weight: 600;
                     font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
                     color: var(--ink-faint); }
-.tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 40rem; }
+.tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* ------------------------------------------------ glossary */
 .glosshead {
@@ -217,7 +216,7 @@ dl.meta dd { margin: 0; color: var(--ink-soft); }
 }
 dl.gloss {
   margin: 0; font-size: .88rem; line-height: 1.45;
-  columns: 2; column-gap: 2.2rem; column-rule: .5px solid var(--rule);
+  columns: 3; column-gap: 2.2rem; column-rule: .5px solid var(--rule);
 }
 dl.gloss div.g {
   break-inside: avoid; margin: 0 0 .5rem;
@@ -229,7 +228,7 @@ dl.gloss dd::before { content: "  "; }
 .pos { font-weight: 400; font-style: italic; color: var(--ink-faint); }
 
 /* ------------------------------------------------ prose page */
-.prose { max-width: 40rem; }
+.prose { }
 .prose p { text-align: justify; hyphens: auto; margin: 0 0 .72rem; }
 .prose ol { padding-left: 1.4rem; }
 .prose ol li { margin-bottom: .5rem; text-align: justify; hyphens: auto; }
@@ -254,8 +253,14 @@ footer.foot {
   border-top: .5px solid var(--rule); margin-top: 2.4rem;
   padding: .9rem 1rem 2rem; font-size: .8rem; color: var(--ink-faint);
 }
-footer.foot .foot-in { max-width: 54rem; margin: 0 auto; }
+footer.foot .foot-in { max-width: 84rem; margin: 0 auto; }
 footer.foot p { margin: 0 0 .2rem; }
+
+/* ------------------------------------------------ narrower viewports */
+@media (max-width: 62rem) {
+  dl.gloss { columns: 2; }
+  .standfirst { columns: 2; }
+}
 
 /* ------------------------------------------------ narrow screens */
 @media (max-width: 40rem) {
@@ -266,7 +271,7 @@ footer.foot p { margin: 0 0 .2rem; }
   .frontmatter h1 { font-size: 1.55rem; }
   .colophon { grid-template-columns: repeat(2, 1fr); gap: .5rem 1rem; }
   .standfirst { columns: 1; }
-  dl.gloss { columns: 1; }
+  dl.gloss { columns: 1; column-rule: 0; }
   dl.meta { grid-template-columns: 1fr; gap: .05rem; }
   dl.meta dt { margin-top: .4rem; }
   .passage { text-align: left; }
