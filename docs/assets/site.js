@@ -19,7 +19,7 @@
   /* lesson filter on the index ------------------------------------ */
   var filter = document.getElementById('filter');
   if (filter) {
-    var rows = Array.prototype.slice.call(document.querySelectorAll('#rows tr'));
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#rows li'));
     var none = document.getElementById('noresult');
     filter.addEventListener('input', function () {
       var q = filter.value.trim().toLowerCase();

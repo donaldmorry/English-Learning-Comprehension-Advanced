@@ -75,7 +75,9 @@ SHELL = """<!DOCTYPE html>
 <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
 <body>
+<div class="sheet">
 __BODY__
+</div>
 <script src="__UP__assets/site.js" defer></script>
 </body>
 </html>
@@ -90,37 +92,37 @@ def page(title, body, desc='', depth=0):
 
 def masthead(depth=0, folio=''):
     up = '../' * depth
-    f = '<span class="folio">%s</span>' % folio if folio else ''
-    return ('<header class="masthead"><div class="masthead-in">'
-            '<a class="title-link" href="%sindex.html">Advanced English &middot; Reading and Vocabulary</a>'
-            '<span class="masthead-right">%s'
+    f = '<span>%s</span>' % folio if folio else ''
+    return ('<header class="runhead">'
+            '<a class="title-link" href="%sindex.html">Advanced English</a>'
+            '<span class="runhead-right">%s'
             '<button id="theme-toggle" class="togglebtn" type="button" '
             'aria-label="Switch colour scheme">'
             '<span class="lbl-dark">Dark</span><span class="lbl-light">Light</span>'
-            '</button></span></div></header>' % (up, f))
+            '</button></span></header>' % (up, f))
 
-FOOT = ('<footer class="foot"><div class="foot-in">'
+FOOT = ('<footer class="foot">'
         '<p>Advanced English &mdash; Reading and Vocabulary. '
         'Fifty original passages at CEFR C1&ndash;C2.</p>'
         '<p>Source, lesson files and the complete PDF: '
         '<a href="https://github.com/{u}/{r}">github.com/{u}/{r}</a></p>'
-        '</div></footer>').format(u=USER, r=REPO)
+        '</footer>').format(u=USER, r=REPO)
 
 # ------------------------------------------------------------------ contents
 rows = []
 for L in lessons:
     rows.append(
-      '<tr data-search="{s}">'
-      '<td class="c-n">{n:02d}</td>'
-      '<td class="c-t"><a href="lessons/{n:02d}.html">{t}</a></td>'
-      '<td class="c-topic">{tp}</td>'
-      '<td class="c-reg">{st}</td></tr>'.format(
+      '<li data-search="{s}">'
+      '<span class="n">{n:02d}</span>'
+      '<a class="t" href="lessons/{n:02d}.html">{t}</a>'
+      '<span class="sub">{tp}</span>'
+      '<span class="reg">{st}</span></li>'.format(
         n=L['n'], t=ihtml.escape(L['title']), tp=ihtml.escape(L['topic']),
         st=ihtml.escape(L['style']),
         s=ihtml.escape((L['title'] + ' ' + L['topic'] + ' ' + L['style']).lower())))
 
 index_body = masthead(0) + """
-<main class="wrap">
+<main>
   <section class="frontmatter">
     <p class="label">A reading course in contemporary non-fiction prose</p>
     <h1>Advanced English: Reading and Vocabulary</h1>
@@ -168,15 +170,9 @@ index_body = masthead(0) + """
       <input id="filter" type="search" placeholder="Filter by title, subject or register"
              autocomplete="off" aria-label="Filter the table of contents">
     </div>
-    <table class="toc">
-      <thead><tr>
-        <th class="c-n">No.</th><th class="c-t">Title</th>
-        <th class="c-topic">Subject</th><th class="c-reg">Register</th>
-      </tr></thead>
-      <tbody id="rows">
+    <ol class="toc" id="rows">
 """ + '\n'.join(rows) + """
-      </tbody>
-    </table>
+    </ol>
     <p id="noresult" class="muted" hidden>No lesson matches that term.</p>
   </section>
 </main>
@@ -184,7 +180,7 @@ index_body = masthead(0) + """
 
 # ------------------------------------------------------------------ method
 about_body = masthead(0) + """
-<main class="wrap prose">
+<main class="prose">
   <p class="label">Editorial note</p>
   <h1>Method and use</h1>
   <p class="abstract">Fifty lessons; approximately one thousand words of prose in each;
@@ -254,18 +250,18 @@ for i, L in enumerate(lessons):
                '<a href="%02d.html">%02d. %s</a></div>' % (nxt['n'], nxt['n'], ihtml.escape(nxt['title']))
                if nxt else '<div class="pn next"></div>')
 
-    body = masthead(1, 'Lesson %02d of 50' % L['n']) + """
-<main class="wrap">
+    body = masthead(1, 'Lesson %02d / 50' % L['n']) + """
+<main>
   <article>
     <header class="lesson-head">
       <p class="label">Lesson %(n)02d</p>
       <h1>%(title)s</h1>
     </header>
     <dl class="meta">
-      <dt>Subject</dt><dd>%(topic)s</dd>
-      <dt>Register</dt><dd>%(style)s</dd>
-      <dt>Level</dt><dd>%(level)s</dd>
-      <dt>Extent</dt><dd>%(words)s words</dd>
+      <div><dt>Subject</dt><dd>%(topic)s</dd></div>
+      <div><dt>Register</dt><dd>%(style)s</dd></div>
+      <div><dt>Level</dt><dd>%(level)s</dd></div>
+      <div><dt>Extent</dt><dd>%(words)s words</dd></div>
     </dl>
     <div class="passage">
 %(passage)s

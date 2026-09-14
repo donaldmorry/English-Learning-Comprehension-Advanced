@@ -1,75 +1,85 @@
 /* Advanced English — Reading & Vocabulary
-   Academic setting: unified serif, dense vertical rhythm, rules instead of
-   boxes, no ornament. No external dependencies. */
+   Set as an A5 page: 148 x 210 mm, 20 mm margins, 11pt standard serif.
+   The text block is therefore 108 mm wide — about 62 characters, which is
+   the measure an A5 book actually gives you. */
 
 :root {
-  --paper:     #fffffd;
-  --ink:       #15151a;
-  --ink-soft:  #43434c;
-  --ink-faint: #76767f;
-  --rule:      #d4d4cc;
-  --rule-firm: #15151a;
-  --link:      #11386b;
-  --link-vis:  #5b2a6b;
-  --serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, "Palatino Linotype",
-           Palatino, "Book Antiqua", "Times New Roman", Times, serif;
-  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sheet-w:   148mm;   /* A5 width                     */
+  --sheet-m:    20mm;   /* standard margin, all four sides */
+  --desk:      #9c9992;
+  --paper:     #fffdf8;
+  --ink:       #14140f;
+  --ink-soft:  #45443c;
+  --ink-faint: #77756c;
+  --rule:      #c9c6bc;
+  --rule-firm: #14140f;
+  --link:      #123a6b;
+  --link-vis:  #5a2a6a;
+  --edge:      rgba(0,0,0,.28);
+  /* the standard document serif */
+  --serif: "Times New Roman", Times, "Liberation Serif", "Nimbus Roman No9 L",
+           Tinos, "DejaVu Serif", serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper:#14140f; --ink:#e4e2da; --ink-soft:#b0aea6; --ink-faint:#85837c;
-    --rule:#3a3a34; --rule-firm:#c9c7bf; --link:#9dbde4; --link-vis:#c2a3d0;
+    --desk:#0e0e0c; --paper:#1c1b18; --ink:#e0ddd4; --ink-soft:#afaca3;
+    --ink-faint:#84817a; --rule:#3b3a34; --rule-firm:#cbc8bf;
+    --link:#9cbde4; --link-vis:#c3a4d1; --edge:rgba(0,0,0,.6);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper:#14140f; --ink:#e4e2da; --ink-soft:#b0aea6; --ink-faint:#85837c;
-  --rule:#3a3a34; --rule-firm:#c9c7bf; --link:#9dbde4; --link-vis:#c2a3d0;
+  --desk:#0e0e0c; --paper:#1c1b18; --ink:#e0ddd4; --ink-soft:#afaca3;
+  --ink-faint:#84817a; --rule:#3b3a34; --rule-firm:#cbc8bf;
+  --link:#9cbde4; --link-vis:#c3a4d1; --edge:rgba(0,0,0,.6);
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; background: var(--desk); }
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--desk);
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.5;
-  font-variant-numeric: oldstyle-num;
+  font-size: 11pt;
+  line-height: 1.38;
   text-rendering: optimizeLegibility;
 }
-a { color: var(--link); text-decoration: underline; text-underline-offset: 2px;
-    text-decoration-thickness: .5px; }
+
+/* ---------------------------------------------- the sheet */
+.sheet {
+  width: var(--sheet-w);
+  max-width: 100%;
+  min-height: 210mm;                 /* one A5 page deep, at least */
+  margin: 10mm auto;
+  padding: var(--sheet-m);
+  background: var(--paper);
+  box-shadow: 0 1px 2px var(--edge), 0 6px 20px var(--edge);
+}
+
+a { color: var(--link); text-decoration: underline;
+    text-underline-offset: 1.5px; text-decoration-thickness: .5px; }
 a:visited { color: var(--link-vis); }
 a:hover { text-decoration-thickness: 1.5px; }
 img { max-width: 100%; }
 
-/* ------------------------------------------------ running head */
-.masthead {
-  border-bottom: .5px solid var(--rule);
-  margin-bottom: 1.6rem;
+/* ---------------------------------------------- running head */
+.runhead {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 6mm; padding-bottom: 1.5mm; margin-bottom: 6mm;
+  border-bottom: .5pt solid var(--rule);
+  font-size: 7.5pt; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--ink-faint);
 }
-.masthead-in {
-  max-width: 84rem; margin: 0 auto; padding: .5rem 1.1rem;
-  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
-}
-.masthead a.title-link {
-  font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--ink); text-decoration: none; font-variant-numeric: lining-nums;
-}
-.masthead a.title-link:hover { text-decoration: underline; }
-.masthead-right { display: flex; align-items: baseline; gap: 1.1rem; }
-.folio {
-  font-size: .78rem; color: var(--ink-faint); font-variant-numeric: lining-nums;
-  letter-spacing: .04em;
-}
+.runhead a.title-link { color: var(--ink-faint); text-decoration: none; }
+.runhead a.title-link:hover { text-decoration: underline; }
+.runhead-right { display: flex; align-items: baseline; gap: 5mm; white-space: nowrap; }
 .togglebtn {
   border: 0; background: none; padding: 0; cursor: pointer;
-  font-family: var(--serif); font-size: .78rem; color: var(--ink-faint);
-  letter-spacing: .06em; text-transform: uppercase; text-decoration: underline;
-  text-underline-offset: 2px; text-decoration-thickness: .5px;
+  font: inherit; color: var(--ink-faint);
+  text-decoration: underline; text-underline-offset: 1.5px;
+  text-decoration-thickness: .5px;
 }
 .togglebtn:hover { color: var(--ink); }
 .lbl-light { display: none; }
@@ -80,207 +90,165 @@ img { max-width: 100%; }
   :root:not([data-theme="light"]) .lbl-light { display: inline; }
 }
 
-/* ------------------------------------------------ page frame */
-.wrap { max-width: 84rem; margin: 0 auto; padding: 0 1.1rem 2.6rem; }
-
-h1 {
-  font-family: var(--serif); font-weight: 600;
-  font-size: 1.72rem; line-height: 1.2; letter-spacing: -.005em;
-  margin: 0 0 .45rem;
-}
-h2 {
-  font-family: var(--serif); font-weight: 600;
-  font-size: 1.06rem; line-height: 1.3; margin: 1.9rem 0 .5rem;
-}
-h3 { font-size: .98rem; font-weight: 600; margin: 1.3rem 0 .35rem; }
+/* ---------------------------------------------- headings */
+h1 { font-size: 17pt; font-weight: 700; line-height: 1.16; margin: 0 0 2mm; }
+h2 { font-size: 12pt; font-weight: 700; line-height: 1.25; margin: 7mm 0 2mm; }
+h3 { font-size: 11pt; font-weight: 700; margin: 5mm 0 1.5mm; }
 
 .label {
-  font-size: .7rem; letter-spacing: .13em; text-transform: uppercase;
-  color: var(--ink-faint); font-variant-numeric: lining-nums;
-  margin: 0 0 .3rem;
+  font-size: 8pt; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 0 0 1.5mm;
 }
-.abstract { font-size: 1rem; color: var(--ink-soft); margin: 0 0 1rem; }
-.muted { color: var(--ink-faint); font-size: .85rem; }
+.abstract { font-size: 11pt; color: var(--ink-soft); margin: 0 0 4mm;
+            text-align: justify; hyphens: auto; }
+.muted { color: var(--ink-faint); font-size: 9.5pt; }
+.rule-firm { border: 0; border-top: 1pt solid var(--rule-firm); margin: 4mm 0; }
+.rule-thin { border: 0; border-top: .5pt solid var(--rule); margin: 6mm 0; }
 
-/* ------------------------------------------------ front page */
-.frontmatter { padding-top: .4rem; }
-.frontmatter h1 { font-size: 1.95rem; max-width: 30ch; }
-.rule-firm { border: 0; border-top: 1.5px solid var(--rule-firm); margin: 1rem 0; }
-.rule-thin { border: 0; border-top: .5px solid var(--rule); margin: 1.4rem 0; }
-
+/* ---------------------------------------------- title page */
+.frontmatter h1 { font-size: 19pt; }
 .colophon {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: .1rem 1.2rem;
-  margin: 1rem 0 0; padding: .7rem 0;
-  border-top: .5px solid var(--rule); border-bottom: .5px solid var(--rule);
-  font-size: .82rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 6mm;
+  margin: 4mm 0; padding: 2.5mm 0;
+  border-top: .5pt solid var(--rule); border-bottom: .5pt solid var(--rule);
 }
-.colophon div { display: flex; flex-direction: column; }
-.colophon dt, .colophon .k {
-  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--ink-faint); font-variant-numeric: lining-nums;
-}
-.colophon .v { font-size: 1rem; font-variant-numeric: lining-nums; }
+.colophon div { display: flex; justify-content: space-between; gap: 3mm;
+                font-size: 9.5pt; }
+.colophon .k { color: var(--ink-faint); }
+.colophon .v { font-weight: 700; }
+.actions { margin: 4mm 0 0; font-size: 10pt; line-height: 1.9; }
+.actions a { margin-right: 6mm; white-space: nowrap; }
+.standfirst { margin: 3mm 0 0; text-align: justify; hyphens: auto;
+              color: var(--ink-soft); }
+.standfirst p { margin: 0 0 2.5mm; }
 
-.actions { margin: 1.1rem 0 0; font-size: .92rem; }
-.actions a { margin-right: 1.4rem; white-space: nowrap; }
-
-.standfirst { columns: 3; column-gap: 2.4rem; margin: 1.4rem 0 0; font-size: .95rem;
-              color: var(--ink-soft); text-align: justify; hyphens: auto; }
-.standfirst p { margin: 0 0 .7rem; break-inside: avoid; }
-.standfirst p:last-child { margin-bottom: 0; }
-
-/* ------------------------------------------------ contents table */
-.contents-head {
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
-  gap: .6rem; margin: 2rem 0 .5rem;
-}
-.contents-head h2 { margin: 0; }
+/* ---------------------------------------------- contents, as a book list */
+.contents-head { margin: 7mm 0 2mm; }
+.contents-head h2 { margin: 0 0 2mm; }
 #filter {
-  font-family: var(--serif); font-size: .85rem; padding: .25rem .5rem;
-  border: .5px solid var(--rule); background: var(--paper); color: var(--ink);
-  width: 17rem; max-width: 100%; border-radius: 0;
+  font-family: var(--serif); font-size: 10pt; padding: 1mm 2mm;
+  border: .5pt solid var(--rule); background: var(--paper); color: var(--ink);
+  width: 100%; border-radius: 0;
 }
 #filter:focus { outline: 1px solid var(--ink); outline-offset: 0; }
-
-table.toc { width: 100%; border-collapse: collapse; font-size: .9rem; }
-table.toc thead th {
-  text-align: left; font-weight: 400; font-size: .68rem; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--ink-faint); padding: .3rem .5rem .3rem 0;
-  border-bottom: 1.5px solid var(--rule-firm); font-variant-numeric: lining-nums;
+ol.toc { list-style: none; margin: 3mm 0 0; padding: 0; }
+ol.toc li {
+  margin: 0 0 3mm; padding: 0 0 3mm 9mm; text-indent: -9mm;
+  border-bottom: .25pt solid var(--rule);
 }
-table.toc td {
-  padding: .42rem .5rem .42rem 0; border-bottom: .5px solid var(--rule);
-  vertical-align: baseline;
+ol.toc li:last-child { border-bottom: 0; }
+ol.toc .n { display: inline-block; width: 9mm; text-indent: 0;
+            color: var(--ink-faint); font-size: 9.5pt; }
+ol.toc .t { font-weight: 700; color: var(--ink); text-decoration: none; }
+ol.toc .t:hover { text-decoration: underline; }
+ol.toc .sub, ol.toc .reg {
+  display: block; text-indent: 0; margin-left: 0;
+  font-size: 9.5pt; line-height: 1.3;
 }
-table.toc tr:hover td { background: rgba(128,128,128,.06); }
-td.c-n { width: 2.6rem; color: var(--ink-faint); font-variant-numeric: lining-nums;
-         font-size: .84rem; white-space: nowrap; }
-td.c-t { width: 34%; }
-td.c-t a { font-weight: 600; text-decoration: none; color: var(--ink); }
-td.c-t a:hover { text-decoration: underline; }
-td.c-topic { color: var(--ink-soft); }
-td.c-reg { color: var(--ink-faint); font-style: italic; font-size: .85rem; }
+ol.toc .sub { color: var(--ink-soft); }
+ol.toc .reg { color: var(--ink-faint); font-style: italic; }
 
-/* ------------------------------------------------ lesson page */
-.lesson-head { margin-bottom: 1.1rem; }
-.lesson-head .label { margin-bottom: .35rem; }
+/* ---------------------------------------------- lesson page */
+.lesson-head { margin-bottom: 3mm; }
 dl.meta {
-  display: grid; grid-template-columns: 7.5rem 1fr; gap: .18rem .9rem;
-  margin: .9rem 0 1.5rem; padding: .6rem 0;
-  border-top: 1.5px solid var(--rule-firm); border-bottom: .5px solid var(--rule);
-  font-size: .84rem;
+  margin: 3mm 0 5mm; padding: 2mm 0;
+  border-top: 1pt solid var(--rule-firm); border-bottom: .5pt solid var(--rule);
+  font-size: 9.5pt; line-height: 1.35;
 }
-dl.meta dt {
-  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--ink-faint); padding-top: .16rem; font-variant-numeric: lining-nums;
-}
-dl.meta dd { margin: 0; color: var(--ink-soft); }
+dl.meta div { display: flex; gap: 3mm; margin-bottom: .8mm; }
+dl.meta dt { flex: 0 0 18mm; color: var(--ink-faint); }
+dl.meta dd { margin: 0; color: var(--ink-soft); flex: 1; }
 
-.passage {
-  font-size: 1.04rem; line-height: 1.62;
-  text-align: justify; hyphens: auto; -webkit-hyphens: auto;
-}
-.passage p { margin: 0 0 .72rem; }
-.passage p + p { text-indent: 0; }
+.passage { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.passage p { margin: 0 0 2.6mm; }
 .passage h2, .passage h3 {
-  font-size: .92rem; font-weight: 600; margin: 1.5rem 0 .45rem;
-  text-align: left; hyphens: none; letter-spacing: .01em;
+  font-size: 11pt; font-weight: 700; margin: 5mm 0 1.5mm;
+  text-align: left; hyphens: none;
 }
 .passage em { font-style: italic; }
-.passage strong { font-weight: 600; }
-.passage hr { border: 0; border-top: .5px solid var(--rule); margin: 1.5rem 0; width: 25%; }
-.passage ul, .passage ol { padding-left: 1.4rem; margin: 0 0 .72rem; }
-.passage li { margin-bottom: .3rem; }
-.passage blockquote {
-  margin: 1rem 0 1rem 1.5rem; font-size: .97rem; color: var(--ink-soft);
-}
+.passage strong { font-weight: 700; }
+.passage hr { border: 0; border-top: .5pt solid var(--rule);
+              margin: 5mm auto; width: 25%; }
+.passage ul, .passage ol { padding-left: 6mm; margin: 0 0 2.6mm; }
+.passage li { margin-bottom: 1.2mm; }
+.passage blockquote { margin: 3mm 0 3mm 6mm; color: var(--ink-soft); }
 .passage table {
-  border-collapse: collapse; font-size: .84rem; margin: 1rem 0;
-  text-align: left; hyphens: none; width: 100%;
+  border-collapse: collapse; font-size: 9pt; margin: 3mm 0;
+  width: 100%; text-align: left; hyphens: none;
 }
 .passage th, .passage td {
-  padding: .3rem .7rem .3rem 0; border-bottom: .5px solid var(--rule);
+  padding: 1mm 3mm 1mm 0; border-bottom: .25pt solid var(--rule);
   text-align: left; vertical-align: baseline;
 }
-.passage thead th { border-bottom: 1px solid var(--rule-firm); font-weight: 600;
-                    font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
-                    color: var(--ink-faint); }
+.passage thead th {
+  border-bottom: .75pt solid var(--rule-firm); font-weight: 700;
+  font-size: 8pt; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
 .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
-/* ------------------------------------------------ glossary */
+/* ---------------------------------------------- glossary */
 .glosshead {
-  font-size: .7rem; letter-spacing: .13em; text-transform: uppercase;
-  font-weight: 400; color: var(--ink-faint); margin: 2.2rem 0 .7rem;
-  padding-top: .5rem; border-top: 1.5px solid var(--rule-firm);
-  font-variant-numeric: lining-nums;
+  font-size: 8pt; letter-spacing: .12em; text-transform: uppercase;
+  font-weight: 400; color: var(--ink-faint);
+  margin: 7mm 0 2.5mm; padding-top: 1.5mm;
+  border-top: 1pt solid var(--rule-firm);
 }
-dl.gloss {
-  margin: 0; font-size: .88rem; line-height: 1.45;
-  columns: 3; column-gap: 2.2rem; column-rule: .5px solid var(--rule);
-}
-dl.gloss div.g {
-  break-inside: avoid; margin: 0 0 .5rem;
-  padding-left: 1.1rem; text-indent: -1.1rem;   /* hanging indent */
-}
-dl.gloss dt { display: inline; font-weight: 600; }
+dl.gloss { margin: 0; font-size: 10pt; line-height: 1.34; }
+dl.gloss div.g { margin: 0 0 1.8mm; padding-left: 5mm; text-indent: -5mm; }
+dl.gloss dt { display: inline; font-weight: 700; }
 dl.gloss dd { display: inline; margin: 0; color: var(--ink-soft); }
 dl.gloss dd::before { content: "  "; }
 .pos { font-weight: 400; font-style: italic; color: var(--ink-faint); }
 
-/* ------------------------------------------------ prose page */
-.prose { }
-.prose p { text-align: justify; hyphens: auto; margin: 0 0 .72rem; }
-.prose ol { padding-left: 1.4rem; }
-.prose ol li { margin-bottom: .5rem; text-align: justify; hyphens: auto; }
+/* ---------------------------------------------- prose page */
+.prose p { text-align: justify; hyphens: auto; margin: 0 0 2.6mm; }
+.prose ol { padding-left: 6mm; }
+.prose ol li { margin-bottom: 2mm; text-align: justify; hyphens: auto; }
 
-/* ------------------------------------------------ apparatus */
+/* ---------------------------------------------- apparatus */
 nav.pagenav {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem;
-  margin: 2.4rem 0 0; padding-top: .7rem; border-top: .5px solid var(--rule);
-  font-size: .86rem;
+  display: flex; justify-content: space-between; gap: 6mm;
+  margin: 8mm 0 0; padding-top: 2.5mm;
+  border-top: .5pt solid var(--rule); font-size: 9.5pt;
 }
-nav.pagenav .pn { min-width: 0; }
+nav.pagenav .pn { min-width: 0; flex: 1; }
 nav.pagenav .pn.next { text-align: right; }
 nav.pagenav .k {
-  display: block; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--ink-faint); margin-bottom: .12rem; font-variant-numeric: lining-nums;
+  display: block; font-size: 8pt; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint); margin-bottom: .5mm;
 }
 nav.pagenav a { color: var(--ink); text-decoration: none; }
 nav.pagenav a:hover { text-decoration: underline; }
-.backlink { margin-top: 1.4rem; font-size: .85rem; }
+.backlink { margin-top: 5mm; font-size: 9.5pt; }
 
 footer.foot {
-  border-top: .5px solid var(--rule); margin-top: 2.4rem;
-  padding: .9rem 1rem 2rem; font-size: .8rem; color: var(--ink-faint);
+  margin-top: 8mm; padding-top: 2.5mm;
+  border-top: .5pt solid var(--rule);
+  font-size: 8.5pt; color: var(--ink-faint); line-height: 1.35;
 }
-footer.foot .foot-in { max-width: 84rem; margin: 0 auto; }
-footer.foot p { margin: 0 0 .2rem; }
+footer.foot p { margin: 0 0 .8mm; }
 
-/* ------------------------------------------------ narrower viewports */
-@media (max-width: 62rem) {
-  dl.gloss { columns: 2; }
-  .standfirst { columns: 2; }
-}
-
-/* ------------------------------------------------ narrow screens */
-@media (max-width: 40rem) {
-  body { font-size: 15px; }
-  .wrap { padding: 0 .85rem 2.4rem; }
-  .masthead-in { padding: .45rem .85rem; }
-  h1 { font-size: 1.45rem; }
-  .frontmatter h1 { font-size: 1.55rem; }
-  .colophon { grid-template-columns: repeat(2, 1fr); gap: .5rem 1rem; }
-  .standfirst { columns: 1; }
-  dl.gloss { columns: 1; column-rule: 0; }
-  dl.meta { grid-template-columns: 1fr; gap: .05rem; }
-  dl.meta dt { margin-top: .4rem; }
-  .passage { text-align: left; }
-  nav.pagenav { grid-template-columns: 1fr; gap: .9rem; }
+/* ---------------------------------------------- small screens
+   Below the width of a sheet, the paper fills the viewport and the
+   margins come down proportionally, the way a small paperback does. */
+@media (max-width: 165mm) {
+  .sheet { margin: 0 auto; min-height: 100vh; padding: 9mm 8mm 12mm; box-shadow: none; }
+  .colophon { grid-template-columns: 1fr; }
+  nav.pagenav { flex-direction: column; gap: 3mm; }
   nav.pagenav .pn.next { text-align: left; }
-  table.toc td.c-reg, table.toc th.c-reg { display: none; }
-  td.c-t { width: 45%; }
+  .passage { text-align: left; }
+  dl.meta div { flex-direction: column; gap: 0; }
+  dl.meta dt { flex: none; }
 }
-@media (max-width: 30rem) {
-  table.toc td.c-topic, table.toc th.c-topic { display: none; }
-  td.c-t { width: auto; }
+
+/* ---------------------------------------------- print: a real A5 page */
+@page { size: A5; margin: 20mm; }
+@media print {
+  html, body { background: #fff; }
+  .sheet { width: auto; max-width: none; min-height: 0; margin: 0;
+           padding: 0; box-shadow: none; background: #fff; }
+  .runhead .togglebtn, #filter, .backlink { display: none; }
+  a { color: #000; text-decoration: none; }
+  .passage { text-align: justify; }
 }
