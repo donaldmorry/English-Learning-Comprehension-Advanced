@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 01 · Money as Software — Advanced English</title>
+<meta name="description" content="Central bank digital currency and the architecture of payment systems. Formal policy explainer — neutral, definitional, scrupulously balanced">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body class="lessonpage">
+<div class="progress"><div id="bar"></div></div><header class="topbar">
+  <a class="brand" href="../index.html"><span class="brand-mark">AE</span> Advanced English</a>
+  <div class="topbar-right"><span class="counter">01 <i>/</i> 50</span>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="Switch between light and dark">
+      <span class="ico-sun" aria-hidden="true">&#9788;</span><span class="ico-moon" aria-hidden="true">&#9789;</span>
+    </button>
+  </div>
+</header>
+<main class="wrap lesson">
+  <article>
+    <p class="eyebrow">Lesson 01</p>
+    <h1>Money as Software</h1>
+    <dl class="meta">
+      <dt>Topic</dt><dd>Central bank digital currency and the architecture of payment systems</dd>
+      <dt>Style &amp; Register</dt><dd>Formal policy explainer — neutral, definitional, scrupulously balanced</dd>
+      <dt>Level</dt><dd>C1–C2 &middot; 1049 words</dd>
+    </dl>
+    <div class="passage">
+<p><strong>1. Purpose and scope</strong></p>
+<p>This note sets out, in non-technical terms, the design questions raised by the possible issuance of a central bank digital currency, and the trade-offs associated with each. It does not advocate a position. The intention is to make the choices legible, since public discussion frequently treats the proposal as a single undifferentiated thing when it is in fact a family of designs with materially different consequences.</p>
+<p><strong>2. What already exists</strong></p>
+<p>It is necessary to begin with a distinction that is widely misunderstood: most of the money in circulation is not issued by a central bank.</p>
+<p>Two forms coexist. The first is central bank money — physical banknotes held by the public, and electronic reserve balances held by commercial banks at the central bank. This is a direct claim on the issuing authority and carries no credit risk in the ordinary sense. The second is commercial bank money — the balance shown in an ordinary current account. This is not a holding of central bank money. It is a liability of a private institution: a promise to pay on demand, backed by that institution's assets, protected up to a statutory limit by deposit insurance.</p>
+<p>In most developed economies, commercial bank money constitutes the overwhelming majority of the total. The public generally does not notice the distinction, because the two exchange at par and the promise is almost always honoured. It becomes noticeable only in a crisis.</p>
+<p>The relevance is this. Physical cash is presently the only form in which a member of the public may hold central bank money directly, and cash use has declined substantially in many economies over the past fifteen years. A digital currency of this type would restore that direct option in electronic form. It is, in essence, a proposal to issue digital banknotes.</p>
+<p><strong>3. The principal design axes</strong></p>
+<p><em>Retail or wholesale.</em> A wholesale instrument would be available only to financial institutions, largely modernising infrastructure that already exists and raising comparatively few public questions. A retail instrument would be available to households and businesses, and it is this variant that generates nearly all the debate. The two should not be discussed interchangeably.</p>
+<p><em>Direct or intermediated.</em> In a direct model, the central bank maintains accounts for every user — an operational undertaking of considerable scale, requiring customer service, identity verification and dispute resolution functions that central banks do not currently possess. In the intermediated, or two-tier, model, the claim remains on the central bank while private firms handle distribution, onboarding and interfaces. Nearly every serious proposal has adopted the intermediated form, on the reasoning that the public sector should define the rails and the private sector should compete on the services running over them.</p>
+<p><em>Account-based or token-based.</em> An account-based system identifies the holder and transfers value by adjusting balances. A token-based system transfers an object that carries its own validity, more closely resembling cash, and can in principle function without the payer and payee being identified to each other. The choice determines what offline operation and privacy are technically capable of.</p>
+<p><strong>4. Motivations advanced</strong></p>
+<p>Four arguments are made in favour, and they are of unequal strength.</p>
+<p><em>Payment resilience.</em> A publicly operated settlement option provides an alternative should privately operated networks fail, which they occasionally do.</p>
+<p><em>Cost and competition.</em> Retail payment fees in several markets are set within concentrated networks. A neutral public option could exert competitive pressure, though this depends on adoption reaching a level sufficient for merchants to treat it as a genuine alternative.</p>
+<p><em>Inclusion.</em> Where a meaningful share of the population lacks access to banking services, a low-cost public instrument may extend participation. Where banking access is already near-universal, this argument carries correspondingly less weight.</p>
+<p><em>Cross-border cost.</em> Remittance corridors frequently carry charges of five to eight per cent with settlement measured in days. Interoperable wholesale systems address this more directly than retail instruments do.</p>
+<p><strong>5. Risks and constraints</strong></p>
+<p>Three difficulties are common to all designs and are the subject of continuing technical work.</p>
+<p><em>Disintermediation.</em> If the public may hold central bank money directly, deposits may migrate out of commercial banks, particularly during periods of stress, when the incentive to move is strongest and the consequence most damaging. Since bank lending is funded substantially by deposits, a large migration would reduce credit availability. Proposed mitigations include holding limits per individual, tiered or zero remuneration, and automatic transfer of balances above a threshold back into a linked commercial account. Each mitigation reduces the risk and simultaneously reduces the instrument's usefulness — a trade-off that has no clean resolution.</p>
+<p><em>Privacy.</em> Cash is anonymous by construction. Any electronic ledger records something, and the question is what, retained for how long, and accessible to whom. Several proposals specify tiered arrangements in which small transactions are handled with minimal data collection while larger ones meet standard financial-crime requirements. The technical means to enforce such tiers exist. Whether a given legal framework binds a future administration is a question of law and constitutional design rather than of engineering, and it is the point on which public reaction has most consistently turned.</p>
+<p><em>Programmability.</em> A digital instrument can in principle carry conditions restricting how, where or by when it may be spent. Proponents note straightforward applications in conditional disbursement and automated settlement. Others observe that the same capability would permit restrictions on individual spending that physical cash does not allow. Most published central bank proposals have explicitly disclaimed any intention to impose such conditions on general-purpose money, while acknowledging that the capability is inherent in the technology and that the safeguard is therefore necessarily legal rather than technical.</p>
+<p><strong>6. Evidence from implementation</strong></p>
+<p>Several jurisdictions have issued retail instruments and the results are instructive. Adoption has generally been low relative to projection. The recurring finding is that where existing electronic payment options are already cheap, fast and universally accepted, the public has little incentive to adopt an additional instrument, however well designed. Adoption has been more meaningful where existing infrastructure was weak or expensive.</p>
+<p><strong>7. Summary</strong></p>
+<p>The technical questions are largely tractable. The decisive questions are institutional: what limits are placed on holdings, what data is recorded and who may see it, and whether those limits are durable. These are matters of law and public legitimacy rather than of system architecture, and no engineering choice can resolve them on its own.</p>
+    </div>
+    <h2 class="glosshead">Key Vocabulary</h2>
+    <dl class="gloss">
+<dt>issuance <span class="pos">n.</span></dt><dd>the act of officially putting something into circulation.</dd>
+<dt>advocate <span class="pos">v.</span></dt><dd>to argue publicly in favour of.</dd>
+<dt>legible <span class="pos">adj.</span></dt><dd>here, clear and comprehensible.</dd>
+<dt>undifferentiated <span class="pos">adj.</span></dt><dd>treated as one thing when it contains distinct types.</dd>
+<dt>liability <span class="pos">n.</span></dt><dd>a financial obligation owed by an institution.</dd>
+<dt>statutory <span class="pos">adj.</span></dt><dd>established by law.</dd>
+<dt>at par <span class="pos">prep. phr.</span></dt><dd>at exactly equal value, one for one.</dd>
+<dt>honoured <span class="pos">adj.</span></dt><dd>of a promise, fulfilled as agreed.</dd>
+<dt>variant <span class="pos">n.</span></dt><dd>a form that differs from others of the same kind.</dd>
+<dt>intermediated <span class="pos">adj.</span></dt><dd>conducted through a third party rather than directly.</dd>
+<dt>onboarding <span class="pos">n.</span></dt><dd>the process of registering and verifying new customers.</dd>
+<dt>rails <span class="pos">n. pl.</span></dt><dd>the underlying infrastructure over which transactions run.</dd>
+<dt>resilience <span class="pos">n.</span></dt><dd>the ability to withstand and recover from failure.</dd>
+<dt>concentrated <span class="pos">adj.</span></dt><dd>dominated by few participants.</dd>
+<dt>remittance <span class="pos">n.</span></dt><dd>money sent home by a person working abroad.</dd>
+<dt>interoperable <span class="pos">adj.</span></dt><dd>able to work together across different systems.</dd>
+<dt>disintermediation <span class="pos">n.</span></dt><dd>the removal of an intermediary from a process.</dd>
+<dt>migrate <span class="pos">v.</span></dt><dd>to move from one place or system to another.</dd>
+<dt>mitigation <span class="pos">n.</span></dt><dd>a measure reducing the severity of a risk.</dd>
+<dt>remuneration <span class="pos">n.</span></dt><dd>payment; here, interest paid on a balance.</dd>
+<dt>disclaim <span class="pos">v.</span></dt><dd>to formally deny an intention or responsibility.</dd>
+<dt>tractable <span class="pos">adj.</span></dt><dd>capable of being solved with available means.</dd>
+</dl>
+    <h2 class="glosshead">Phrases &amp; Collocations</h2>
+    <dl class="gloss">
+<dt>sets out</dt><dd>presents formally and in order. <em>Standard in official documents.</em></dd>
+<dt>it is necessary to begin with</dt><dd>a formal framing move establishing prerequisites.</dd>
+<dt>of unequal strength</dt><dd>varying in how well supported they are.</dd>
+<dt>carries correspondingly less weight</dt><dd>is proportionally less persuasive.</dd>
+<dt>has no clean resolution</dt><dd>cannot be settled without accepting a loss somewhere.</dd>
+<dt>turn on</dt><dd>to depend decisively upon. <em>"The point on which reaction has turned."</em></dd>
+</dl>
+  </article>
+  <nav class="pagenav"><span class="pn empty"></span>
+<a class="pn next" href="02.html"><span>Next</span><b>Bringing Back the Thunder Beast</b></a></nav>
+  <p class="backlink"><a href="../index.html">&larr; All fifty lessons</a></p>
+</main>
+<footer class="foot">
+  <p><strong>Advanced English &mdash; Reading &amp; Vocabulary.</strong>
+     Fifty original passages at CEFR C1&ndash;C2.</p>
+  <p class="muted">Source and PDF on <a href="https://github.com/donaldmorry/English-Learning-Comprehension-Advanced">GitHub</a>.</p>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

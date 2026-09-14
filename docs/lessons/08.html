@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 08 · The Shape of the Problem — Advanced English</title>
+<meta name="description" content="Protein folding, structure prediction and AlphaFold. Analogy-led explainer — patient, sequential, one extended figure">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body class="lessonpage">
+<div class="progress"><div id="bar"></div></div><header class="topbar">
+  <a class="brand" href="../index.html"><span class="brand-mark">AE</span> Advanced English</a>
+  <div class="topbar-right"><span class="counter">08 <i>/</i> 50</span>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="Switch between light and dark">
+      <span class="ico-sun" aria-hidden="true">&#9788;</span><span class="ico-moon" aria-hidden="true">&#9789;</span>
+    </button>
+  </div>
+</header>
+<main class="wrap lesson">
+  <article>
+    <p class="eyebrow">Lesson 08</p>
+    <h1>The Shape of the Problem</h1>
+    <dl class="meta">
+      <dt>Topic</dt><dd>Protein folding, structure prediction and AlphaFold</dd>
+      <dt>Style &amp; Register</dt><dd>Analogy-led explainer — patient, sequential, one extended figure</dd>
+      <dt>Level</dt><dd>C1–C2 &middot; 1024 words</dd>
+    </dl>
+    <div class="passage">
+<p>Imagine a factory that manufactures machines but ships them flat.</p>
+<p>Every product leaves the loading bay as a long strip of components fastened end to end in a fixed order — a chain, not an object. There are no instructions in the box, no diagrams, no assembly service. And yet within a fraction of a second of arriving, each strip folds itself, without supervision, into a three-dimensional machine of extraordinary intricacy: a pump, a hinge, a gate, a pair of tongs that grips one specific molecule and ignores everything else. It does this correctly, the same way, every time. Nobody tells it how.</p>
+<p>This is not an analogy for how proteins work. It is a fairly literal description.</p>
+<p>A protein begins as a linear sequence of amino acids, of which twenty are commonly used. The sequence is specified by a gene, and reading it is now trivially cheap; we have billions of such sequences on file. But a protein's sequence does not do anything. What does the work is the shape the chain collapses into — the tertiary structure — because biology is almost entirely a matter of physical fit. An enzyme accelerates a reaction by holding two molecules in precisely the right orientation. An antibody neutralises a pathogen by gripping its surface like a cast around a limb. A receptor in a cell membrane changes shape when a signalling molecule docks into it, and that change is the message. Shape is function. Learn the sequence and you have the parts list; learn the fold and you have the machine.</p>
+<p>For half a century, getting from the first to the second was the central unsolved problem of molecular biology, and the reason it was hard is worth stating precisely, because the difficulty is not the sort that more effort overcomes.</p>
+<p>Consider a modest protein of a hundred amino acids. Each junction between neighbouring units can rotate into a number of stable configurations. If we allow only three per junction — a considerable understatement — the chain has something on the order of three to the ninety-ninth power possible conformations. A calculation made in 1969 pointed out the consequence: if a protein searched those possibilities one at a time, even at the speed of molecular vibration, finding the correct one would take longer than the universe has existed. Yet real proteins fold in milliseconds. This is Levinthal's paradox, and it does not describe a puzzle about proteins so much as a flaw in the question. Proteins do not search. They fall.</p>
+<p>The better picture is a landscape. Every possible configuration of the chain has an associated energy, and you may imagine those energies as elevations across a vast surface, with the correctly folded state sitting at the lowest point. The surface is not flat and random; it is shaped like a funnel, with sides that slope reliably inward. A chain released anywhere on that surface rolls downhill, driven by ordinary physics — water pushing greasy segments inward, charged segments attracting their opposites, hydrogen bonds locking local patterns into place. It arrives at the bottom not because it has searched, but because the landscape leaves it nowhere else to go.</p>
+<p>That explanation is satisfying and, for decades, almost useless. Knowing that the fold is the energy minimum does not tell you where the minimum lies. Computing the landscape from first principles is prohibitively expensive; every atom interacts with every other, and the interactions are subtle enough that a rounding error propagates into a completely wrong answer.</p>
+<p>So biologists did it the hard way, empirically. X-ray crystallography requires persuading millions of copies of a protein to form an orderly crystal — a process that can consume years and frequently fails outright, since many important proteins, particularly those embedded in membranes, refuse to crystallise at all. Nuclear magnetic resonance and, more recently, cryo-electron microscopy have widened the repertoire, but each structure remained a substantial undertaking. By 2020, after sixty years of collective effort, researchers had determined roughly 170,000 structures. The catalogue of known sequences by then ran to hundreds of millions. The gap was not closing; it was widening every year.</p>
+<p>The breakthrough, when it came, sidestepped the physics entirely.</p>
+<p>Instead of simulating how a chain falls, a deep learning system was trained to predict where it lands — inferring structure directly from sequence by learning statistical regularities across every structure previously solved. Its most important insight concerned evolution. If two amino acids sit close together in the folded protein, a mutation at one position tends to be compensated by a mutation at the other, because the contact must be preserved. Line up the same protein across thousands of species and those correlated changes stand out. Evolution, in effect, has been performing structural experiments for three billion years and recording the results in sequence data. The model learned to read them.</p>
+<p>In late 2020, at the biennial assessment where prediction methods are tested against structures not yet published, the system achieved accuracy comparable to laboratory measurement. The organisers, who had spent twenty-five years watching incremental progress, described the problem as substantially solved. Within two years, a public database offered predicted structures for over two hundred million proteins — essentially every sequence known to science — free to anyone.</p>
+<p>It is worth being exact about what this does and does not deliver. The output is a static structure: one snapshot of a machine whose function usually depends on movement. It handles intrinsically disordered regions poorly, because such regions have no single shape to predict. It is unreliable at forecasting how a single mutation alters stability, which is precisely what clinical genetics most wants to know. And a predicted structure is a hypothesis — extremely well-informed, occasionally wrong, and not a substitute for experiment.</p>
+<p>Even so, the change in working practice has been profound. A structure that once represented a doctoral thesis is now a lookup. The bottleneck has moved downstream, to the harder questions of dynamics, interaction and design.</p>
+<p>The flat-packed machines still assemble themselves, unsupervised, as they always have. What is new is that we can finally see what they are going to become before they do it.</p>
+    </div>
+    <h2 class="glosshead">Key Vocabulary</h2>
+    <dl class="gloss">
+<dt>intricacy <span class="pos">n.</span></dt><dd>complexity of detail and arrangement.</dd>
+<dt>linear <span class="pos">adj.</span></dt><dd>arranged in a single line or sequence.</dd>
+<dt>trivially <span class="pos">adv.</span></dt><dd>in a way that presents no difficulty at all.</dd>
+<dt>orientation <span class="pos">n.</span></dt><dd>the direction or position in which something is placed.</dd>
+<dt>neutralise <span class="pos">v.</span></dt><dd>to render harmless or ineffective.</dd>
+<dt>dock <span class="pos">v.</span></dt><dd>to fit securely into a matching structure.</dd>
+<dt>understatement <span class="pos">n.</span></dt><dd>a description weaker than the reality warrants.</dd>
+<dt>conformation <span class="pos">n.</span></dt><dd>a particular three-dimensional arrangement of a molecule.</dd>
+<dt>paradox <span class="pos">n.</span></dt><dd>an apparent contradiction that reveals a flawed assumption.</dd>
+<dt>elevation <span class="pos">n.</span></dt><dd>height above a reference level.</dd>
+<dt>funnel <span class="pos">n.</span></dt><dd>a cone-shaped channel that directs everything toward one point.</dd>
+<dt>minimum <span class="pos">n.</span></dt><dd>the lowest value in a set or on a surface.</dd>
+<dt>prohibitively <span class="pos">adv.</span></dt><dd>to a degree that prevents something from being done.</dd>
+<dt>propagate <span class="pos">v.</span></dt><dd>to spread or multiply through a system.</dd>
+<dt>empirically <span class="pos">adv.</span></dt><dd>by observation and experiment rather than theory.</dd>
+<dt>outright <span class="pos">adv.</span></dt><dd>completely; without partial success.</dd>
+<dt>repertoire <span class="pos">n.</span></dt><dd>the full range of techniques or works available.</dd>
+<dt>undertaking <span class="pos">n.</span></dt><dd>a substantial task that has been committed to.</dd>
+<dt>sidestep <span class="pos">v.</span></dt><dd>to avoid dealing with something directly.</dd>
+<dt>infer <span class="pos">v.</span></dt><dd>to reach a conclusion from evidence rather than direct observation.</dd>
+<dt>compensate <span class="pos">v.</span></dt><dd>to offset or counterbalance a change.</dd>
+<dt>bottleneck <span class="pos">n.</span></dt><dd>the point in a process that limits overall speed.</dd>
+</dl>
+    <h2 class="glosshead">Phrases &amp; Collocations</h2>
+    <dl class="gloss">
+<dt>on the order of</dt><dd>approximately, within a factor of ten. <em>Used for rough magnitudes.</em></dd>
+<dt>from first principles</dt><dd>starting from fundamental laws rather than from data or precedent.</dd>
+<dt>do it the hard way</dt><dd>to proceed by slow, laborious means.</dd>
+<dt>it is worth being exact about</dt><dd>a formula introducing a necessary qualification.</dd>
+<dt>the bottleneck has moved downstream</dt><dd>the limiting step is now later in the process.</dd>
+<dt>a substitute for</dt><dd>a replacement that serves the same purpose.</dd>
+</dl>
+  </article>
+  <nav class="pagenav"><a class="pn prev" href="07.html"><span>Previous</span><b>Everything, All at Once</b></a>
+<a class="pn next" href="09.html"><span>Next</span><b>Thirty Years Away, Forever</b></a></nav>
+  <p class="backlink"><a href="../index.html">&larr; All fifty lessons</a></p>
+</main>
+<footer class="foot">
+  <p><strong>Advanced English &mdash; Reading &amp; Vocabulary.</strong>
+     Fifty original passages at CEFR C1&ndash;C2.</p>
+  <p class="muted">Source and PDF on <a href="https://github.com/donaldmorry/English-Learning-Comprehension-Advanced">GitHub</a>.</p>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

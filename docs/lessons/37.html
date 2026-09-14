@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 37 · The Machine That Wrote the Machine — Advanced English</title>
+<meta name="description" content="Compilers and the history of abstraction. Historical essay — long periodic sentences, dry wit, understatement">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body class="lessonpage">
+<div class="progress"><div id="bar"></div></div><header class="topbar">
+  <a class="brand" href="../index.html"><span class="brand-mark">AE</span> Advanced English</a>
+  <div class="topbar-right"><span class="counter">37 <i>/</i> 50</span>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="Switch between light and dark">
+      <span class="ico-sun" aria-hidden="true">&#9788;</span><span class="ico-moon" aria-hidden="true">&#9789;</span>
+    </button>
+  </div>
+</header>
+<main class="wrap lesson">
+  <article>
+    <p class="eyebrow">Lesson 37</p>
+    <h1>The Machine That Wrote the Machine</h1>
+    <dl class="meta">
+      <dt>Topic</dt><dd>Compilers and the history of abstraction</dd>
+      <dt>Style &amp; Register</dt><dd>Historical essay — long periodic sentences, dry wit, understatement</dd>
+      <dt>Level</dt><dd>C1–C2 &middot; 1086 words</dd>
+    </dl>
+    <div class="passage">
+<p>There is a persistent temptation, when writing the history of computing, to organise it around machines — around the successive generations of valve, transistor and integrated circuit, each faster and smaller than the last. It is a defensible way to tell the story, and it has the advantage of producing good photographs. It is also, I would suggest, the less interesting half. The hardware has improved by something on the order of a trillion-fold. What has changed more profoundly is the distance between the person issuing an instruction and the machine that carries it out, and that distance is measured not in nanometres but in layers of abstraction, almost every one of which was introduced over the confident objections of serious people.</p>
+<p>Consider the situation in about 1950. A computer was programmed in the only language it possessed: binary instructions, entered as numbers, each specifying an operation and the memory addresses it acted upon. A programmer kept track of every location by hand, on paper. Inserting a single instruction into the middle of a working program shifted every subsequent address, which meant recalculating the lot. Errors were not merely common but effectively guaranteed, and the discipline attracted, as one might expect, a particular sort of person — meticulous, tolerant of tedium, and in possession of a very good eraser.</p>
+<p>Assembly language was the first concession to human frailty, and it was a modest one: instead of writing the numeric code for an addition, one wrote a short mnemonic, and instead of tracking addresses, one attached names to them and let a small program substitute the numbers. This program — the assembler — did nothing clever. It performed a mechanical translation that a patient clerk could have performed. It was nonetheless resisted, on the grounds that machine time was scarce and expensive while programmer time was neither, an argument which was perfectly correct at the time and has aged spectacularly badly.</p>
+<p>The genuinely radical proposition arrived shortly afterwards, and it was this: that a computer might be given instructions in something resembling ordinary notation, and might work out the machine code for itself. Grace Hopper, who developed the first compiler of this general kind in the early 1950s, later recalled that her difficulty was not technical. It was that nobody believed a computer could write programs, and she spent a considerable period being told, by people who had every reason to know better, that the thing she had already done was impossible.</p>
+<p>The objection that actually mattered, however, was not philosophical but economic, and it deserves more respect than it usually receives. Hand-written assembly, produced by an expert who understood the specific machine, was fast. Code generated automatically by a translator would surely be worse — clumsier, more wasteful of registers, slower in execution. Since computers cost more per hour than a small team of engineers, a translator that produced code even twenty per cent slower was not a labour-saving device. It was an extravagance.</p>
+<p>This is the context in which the FORTRAN project, begun in 1954 and delivered in 1957, set itself an unusually severe requirement: the compiler had to produce code approximately as efficient as a competent human would write by hand, because anything less would be rejected by the very users it was meant to serve. Most of the effort went not into the language, which is comparatively simple, but into optimisation — into an analytical apparatus capable of noticing that a calculation inside a loop does not depend on the loop variable and may therefore be performed once outside it, or that a value already sitting in a register need not be fetched again from memory. The project overran substantially. When it finally shipped, it met the requirement, and the argument was over. Within a few years, programming directly in assembly had become a specialist activity rather than the ordinary condition of the field.</p>
+<p>What followed was a sequence of the same manoeuvre, executed repeatedly at higher altitudes, and greeted each time with the same scepticism from people who had mastered the layer below. Structured programming was said to be an unnecessary restriction on capable engineers. Automatic memory management was said to be an unaffordable luxury, and for certain applications remained one for a long while. Dynamic languages were said to be unsuitable for serious work. Each objection was true when raised and false within a decade, which may be the closest thing to a law that the discipline possesses.</p>
+<p>The compiler itself became a curious object along the way. A translator must be written in some language, and for a new language the obvious candidate is an existing one — but once a rudimentary version exists, the compiler may be rewritten in the language it compiles and then used to compile itself. This procedure, known as bootstrapping, has the pleasing property of being circular without being paradoxical, and it means that the lineage of a modern compiler can often be traced back, through successive self-compilations, to some long-forgotten program written by hand in the 1970s. Ken Thompson observed in 1984 that this circularity carries an unsettling implication: a modification introduced into a compiler could, in principle, teach that compiler to reinsert the modification into its own successors indefinitely, remaining invisible in every version of the source code anyone might subsequently inspect. The observation was made as a caution about trust, and it remains the most elegant argument in the literature for taking the provenance of tools seriously.</p>
+<p>Meanwhile the layers have continued to accumulate, quietly and beyond the notice of almost everyone. A single line of a modern scripting language may be parsed into an intermediate representation, interpreted by a runtime that was itself compiled from a systems language by a compiler using a shared optimisation framework, translated into instructions for a processor architecture that then decodes them internally into still smaller operations executed out of order across several pipelines, and finally realised as voltages across structures a few dozen atoms wide. Between the intention and the electron there are perhaps a dozen translation steps, no individual having full command of more than two or three.</p>
+<p>We tend to describe this as complexity, generally in a tone of complaint. It is more accurately described as the largest and least celebrated act of delegation in industrial history: an enormous, cumulative decision to hand the tedious parts to the machine, taken one contested step at a time, by people who were assured on each occasion that this particular step was a step too far.</p>
+    </div>
+    <h2 class="glosshead">Key Vocabulary</h2>
+    <dl class="gloss">
+<dt>persistent <span class="pos">adj.</span></dt><dd>continuing to exist despite resistance or correction.</dd>
+<dt>defensible <span class="pos">adj.</span></dt><dd>able to be justified, though not necessarily best.</dd>
+<dt>abstraction <span class="pos">n.</span></dt><dd>a simplified representation that hides underlying detail.</dd>
+<dt>objection <span class="pos">n.</span></dt><dd>a stated reason for disagreement.</dd>
+<dt>meticulous <span class="pos">adj.</span></dt><dd>extremely careful about detail.</dd>
+<dt>tedium <span class="pos">n.</span></dt><dd>the quality of being tediously long and dull.</dd>
+<dt>concession <span class="pos">n.</span></dt><dd>something granted in response to a demand or weakness.</dd>
+<dt>frailty <span class="pos">n.</span></dt><dd>weakness; liability to error.</dd>
+<dt>mnemonic <span class="pos">n.</span></dt><dd>a short code or device that aids memory.</dd>
+<dt>substitute <span class="pos">v.</span></dt><dd>to put one thing in place of another.</dd>
+<dt>scarce <span class="pos">adj.</span></dt><dd>available in insufficient quantity.</dd>
+<dt>extravagance <span class="pos">n.</span></dt><dd>unjustifiable expenditure.</dd>
+<dt>severe <span class="pos">adj.</span></dt><dd>demanding; strict in requirement.</dd>
+<dt>apparatus <span class="pos">n.</span></dt><dd>an organised set of methods or equipment for a purpose.</dd>
+<dt>overrun <span class="pos">v.</span></dt><dd>to exceed an allotted time or budget.</dd>
+<dt>manoeuvre <span class="pos">n.</span></dt><dd>a skilful or calculated move.</dd>
+<dt>altitude <span class="pos">n.</span></dt><dd>height; here, figuratively, a level of abstraction.</dd>
+<dt>rudimentary <span class="pos">adj.</span></dt><dd>basic and undeveloped; a first rough version.</dd>
+<dt>lineage <span class="pos">n.</span></dt><dd>a line of descent from an ancestor.</dd>
+<dt>unsettling <span class="pos">adj.</span></dt><dd>causing quiet unease.</dd>
+<dt>provenance <span class="pos">n.</span></dt><dd>the record of origin and ownership.</dd>
+<dt>delegation <span class="pos">n.</span></dt><dd>the transfer of a task to another party.</dd>
+</dl>
+    <h2 class="glosshead">Phrases &amp; Collocations</h2>
+    <dl class="gloss">
+<dt>on the order of</dt><dd>approximately, to within a factor of ten.</dd>
+<dt>has aged spectacularly badly</dt><dd>has come to look very wrong in retrospect. <em>Ironic.</em></dd>
+<dt>every reason to know better</dt><dd>was in a position to understand, and failed to.</dd>
+<dt>a step too far</dt><dd>an extension beyond what is prudent or acceptable.</dd>
+<dt>beyond the notice of</dt><dd>unobserved by; escaping the attention of.</dd>
+<dt>in a tone of complaint</dt><dd>in a manner expressing dissatisfaction.</dd>
+</dl>
+  </article>
+  <nav class="pagenav"><a class="pn prev" href="36.html"><span>Previous</span><b>Notes from the Nursery Line</b></a>
+<a class="pn next" href="38.html"><span>Next</span><b>The Butterfly and the Supercomputer</b></a></nav>
+  <p class="backlink"><a href="../index.html">&larr; All fifty lessons</a></p>
+</main>
+<footer class="foot">
+  <p><strong>Advanced English &mdash; Reading &amp; Vocabulary.</strong>
+     Fifty original passages at CEFR C1&ndash;C2.</p>
+  <p class="muted">Source and PDF on <a href="https://github.com/donaldmorry/English-Learning-Comprehension-Advanced">GitHub</a>.</p>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 29 · Intelligence the Size of a Grain of Rice — Advanced English</title>
+<meta name="description" content="Edge computing and machine learning on microcontrollers. Technical white paper — clipped, heavily headed, impersonal, bulleted">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body class="lessonpage">
+<div class="progress"><div id="bar"></div></div><header class="topbar">
+  <a class="brand" href="../index.html"><span class="brand-mark">AE</span> Advanced English</a>
+  <div class="topbar-right"><span class="counter">29 <i>/</i> 50</span>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="Switch between light and dark">
+      <span class="ico-sun" aria-hidden="true">&#9788;</span><span class="ico-moon" aria-hidden="true">&#9789;</span>
+    </button>
+  </div>
+</header>
+<main class="wrap lesson">
+  <article>
+    <p class="eyebrow">Lesson 29</p>
+    <h1>Intelligence the Size of a Grain of Rice</h1>
+    <dl class="meta">
+      <dt>Topic</dt><dd>Edge computing and machine learning on microcontrollers</dd>
+      <dt>Style &amp; Register</dt><dd>Technical white paper — clipped, heavily headed, impersonal, bulleted</dd>
+      <dt>Level</dt><dd>C1–C2 &middot; 1046 words</dd>
+    </dl>
+    <div class="passage">
+<p><strong>1. Scope</strong></p>
+<p>This briefing summarises the state of machine learning deployed on constrained embedded hardware — commonly termed <em>tinyML</em> — and assesses its viability for industrial adoption over the next thirty-six months. It is intended for technical decision-makers evaluating architecture at the boundary between device and network.</p>
+<p><strong>2. Definition and context</strong></p>
+<p>The prevailing architecture of the last fifteen years is centralised. A device captures data, transmits it to remote infrastructure, and receives a result. This model has served well, and its limitations have been tolerable because devices were few and connectivity was improving.</p>
+<p>Neither condition now holds. Microcontrollers — single-chip computers costing under two dollars, containing a modest processor, a few hundred kilobytes of memory and no operating system in the conventional sense — ship at a rate exceeding twenty-five billion units annually. They are present in appliances, vehicles, machinery, instruments, sensors and packaging. The overwhelming majority transmit nothing and analyse nothing. They react.</p>
+<p>The proposition of tinyML is that a useful class of inference can be performed on these devices directly, within a power budget measured in milliwatts, without network connectivity of any kind.</p>
+<p><strong>3. Drivers</strong></p>
+<p>Four factors motivate the shift from centralised to local inference.</p>
+<ul>
+<li><strong>Latency.</strong> Round-trip network transit imposes a floor of tens to hundreds of milliseconds. Applications requiring closed-loop response — collision avoidance, machine safety interlocks, motor control — cannot accommodate it. Local inference operates in single-digit milliseconds.</li>
+<li><strong>Bandwidth.</strong> A single vibration sensor sampled at industrial rates generates data volumes that are trivial locally and prohibitive in aggregate when multiplied across a plant and transmitted continuously. Local processing reduces transmission from a raw stream to an occasional event notification, typically by three to four orders of magnitude.</li>
+<li><strong>Energy.</strong> Radio transmission is, on most embedded platforms, the dominant power consumer by a substantial margin. Computation is comparatively cheap. Devices that process locally and transmit rarely achieve battery lifetimes measured in years rather than weeks — the difference between a sensor that is installed and forgotten and one requiring a maintenance schedule.</li>
+<li><strong>Data governance.</strong> Raw audio and imagery carry regulatory and reputational exposure. A device that extracts a feature locally and discards the source material reduces that exposure at the architectural level rather than through policy, which is materially more defensible under audit.</li>
+</ul>
+<p><strong>4. Constraints</strong></p>
+<p>The engineering envelope is severe and should not be understated.</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Typical server</th>
+<th>Typical microcontroller</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Working memory</td>
+<td>64–512 GB</td>
+<td>64–512 KB</td>
+</tr>
+<tr>
+<td>Storage for model</td>
+<td>Effectively unbounded</td>
+<td>0.5–2 MB flash</td>
+</tr>
+<tr>
+<td>Power budget</td>
+<td>200–700 W</td>
+<td>0.1–50 mW</td>
+</tr>
+<tr>
+<td>Arithmetic</td>
+<td>32/16-bit floating point</td>
+<td>8-bit integer preferred; no FPU on many parts</td>
+</tr>
+</tbody>
+</table>
+<p>The ratio between these columns is approximately one million to one. A model that is considered small by contemporary standards exceeds the available memory by four orders of magnitude. Compression alone cannot close a gap of that size; the model must be designed for the target from the outset.</p>
+<p><strong>5. Enabling techniques</strong></p>
+<p>Four methods, generally applied in combination, bring models within budget.</p>
+<ul>
+<li><strong>Quantisation.</strong> Weights and activations are converted from 32-bit floating point to 8-bit integers, reducing model size fourfold and enabling integer-only arithmetic. Accuracy loss on well-behaved networks is typically under one per cent, and <em>quantisation-aware training</em> — simulating the reduced precision during training rather than applying it afterwards — recovers most of the remainder.</li>
+<li><strong>Pruning.</strong> Weights of negligible magnitude are removed and the network retrained. Structured pruning, which eliminates entire channels rather than scattered individual weights, yields smaller gains on paper but far larger gains in practice, because unstructured sparsity confers no benefit on hardware without dedicated support.</li>
+<li><strong>Knowledge distillation.</strong> A compact model is trained to reproduce the output distribution of a large one rather than the original labels. The larger model's confidence across incorrect classes carries information absent from the labels, and the compact model learns from it.</li>
+<li><strong>Hardware-aware architecture search.</strong> Network topology is optimised automatically against measured latency and memory on the actual target device, rather than against parameter count, which correlates poorly with real performance.</li>
+</ul>
+<p><strong>6. Established applications</strong></p>
+<p>The following are in volume production and should be regarded as proven rather than prospective.</p>
+<ul>
+<li><strong>Keyword spotting.</strong> A model of 20–50 KB detects a wake phrase continuously at under one milliwatt, activating higher-power systems only on detection. This is the canonical deployment and it is present in hundreds of millions of units.</li>
+<li><strong>Predictive maintenance.</strong> Accelerometers on rotating machinery, with local classification of vibration signatures, detect bearing wear and imbalance weeks in advance of failure. Retrofit installation is straightforward and the return case is unambiguous.</li>
+<li><strong>Agricultural and environmental monitoring.</strong> Battery- or solar-powered nodes classify acoustic events — pest species, equipment faults, water flow — in locations with no connectivity, reporting summaries over long-range low-bandwidth radio.</li>
+<li><strong>Gesture and presence detection.</strong> Low-resolution thermal and radar sensing, processed locally, provides occupancy and gesture input without capturing identifiable imagery.</li>
+</ul>
+<p><strong>7. Limitations</strong></p>
+<p>Three constraints materially restrict the addressable scope.</p>
+<ul>
+<li><strong>Task complexity.</strong> Reliable performance is confined to narrow classification with a small number of classes. General-purpose perception, open-vocabulary language processing and anything requiring broad world knowledge remain out of scope at this power envelope, and no near-term development suggests otherwise.</li>
+<li><strong>Model lifecycle.</strong> Deployed models degrade as conditions shift — new equipment, altered acoustics, seasonal variation. Many embedded platforms have no update path once installed. Where field update is impossible, the model must be specified conservatively and its expected service life stated explicitly at design time.</li>
+<li><strong>Toolchain maturity.</strong> The workflow from trained model to deployed binary remains fragmented across vendor-specific tooling. Engineering effort is dominated by integration rather than by modelling, and this should be reflected in project estimates.</li>
+</ul>
+<p><strong>8. Assessment</strong></p>
+<p>The technology is mature for narrow, well-specified tasks and unsuitable for open-ended ones. Organisations should evaluate it where a clearly bounded inference task currently requires either continuous transmission or mains power, and where removing that requirement changes what can be deployed and where.</p>
+<p>The strategic significance is not that these devices are individually capable. It is that they are cheap enough to be installed in quantities that were previously unjustifiable — instrumenting assets, environments and processes that have never been measured at all, because measuring them used to require a wire.</p>
+    </div>
+    <h2 class="glosshead">Key Vocabulary</h2>
+    <dl class="gloss">
+<dt>constrained <span class="pos">adj.</span></dt><dd>operating under strict limits of resource or capability.</dd>
+<dt>viability <span class="pos">n.</span></dt><dd>the capacity to work successfully in practice.</dd>
+<dt>prevailing <span class="pos">adj.</span></dt><dd>currently most common or dominant.</dd>
+<dt>inference <span class="pos">n.</span></dt><dd>the act of producing a prediction from a trained model.</dd>
+<dt>latency <span class="pos">n.</span></dt><dd>the delay between an action and its result.</dd>
+<dt>interlock <span class="pos">n.</span></dt><dd>a safety mechanism that prevents unsafe operation.</dd>
+<dt>accommodate <span class="pos">v.</span></dt><dd>to allow room for; to tolerate.</dd>
+<dt>prohibitive <span class="pos">adj.</span></dt><dd>so great as to prevent something being done.</dd>
+<dt>aggregate <span class="pos">n.</span></dt><dd>the combined total. <em>"In aggregate"</em> = taken all together.</dd>
+<dt>governance <span class="pos">n.</span></dt><dd>the framework of rules and accountability over a resource.</dd>
+<dt>exposure <span class="pos">n.</span></dt><dd>vulnerability to loss, penalty or criticism.</dd>
+<dt>defensible <span class="pos">adj.</span></dt><dd>capable of being justified under scrutiny.</dd>
+<dt>envelope <span class="pos">n.</span></dt><dd>the boundary of what a system can do. <em>Engineering usage.</em></dd>
+<dt>unbounded <span class="pos">adj.</span></dt><dd>without limit.</dd>
+<dt>quantisation <span class="pos">n.</span></dt><dd>reduction of numerical precision to save memory and computation.</dd>
+<dt>negligible <span class="pos">adj.</span></dt><dd>so small as not to be worth considering.</dd>
+<dt>confer <span class="pos">v.</span></dt><dd>to grant or provide a benefit.</dd>
+<dt>distillation <span class="pos">n.</span></dt><dd>extraction of the essential part of something.</dd>
+<dt>topology <span class="pos">n.</span></dt><dd>the structural arrangement of connections in a network.</dd>
+<dt>canonical <span class="pos">adj.</span></dt><dd>accepted as the standard example of its kind.</dd>
+<dt>retrofit <span class="pos">n./adj.</span></dt><dd>installation of new capability into existing equipment.</dd>
+<dt>fragmented <span class="pos">adj.</span></dt><dd>broken into incompatible or uncoordinated parts.</dd>
+</dl>
+    <h2 class="glosshead">Phrases &amp; Collocations</h2>
+    <dl class="gloss">
+<dt>neither condition now holds</dt><dd>both assumptions have ceased to be true. <em>Formal.</em></dd>
+<dt>by a substantial margin</dt><dd>by a large amount.</dd>
+<dt>orders of magnitude</dt><dd>factors of ten; used for very large ratios.</dd>
+<dt>from the outset</dt><dd>from the very beginning of a project.</dd>
+<dt>out of scope</dt><dd>outside what is being addressed or attempted.</dd>
+<dt>the return case is unambiguous</dt><dd>the financial justification is clear and undisputed.</dd>
+</dl>
+  </article>
+  <nav class="pagenav"><a class="pn prev" href="28.html"><span>Previous</span><b>The Letter and the Pencil</b></a>
+<a class="pn next" href="30.html"><span>Next</span><b>The Invisible Craft</b></a></nav>
+  <p class="backlink"><a href="../index.html">&larr; All fifty lessons</a></p>
+</main>
+<footer class="foot">
+  <p><strong>Advanced English &mdash; Reading &amp; Vocabulary.</strong>
+     Fifty original passages at CEFR C1&ndash;C2.</p>
+  <p class="muted">Source and PDF on <a href="https://github.com/donaldmorry/English-Learning-Comprehension-Advanced">GitHub</a>.</p>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

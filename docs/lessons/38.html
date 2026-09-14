@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 38 · The Butterfly and the Supercomputer — Advanced English</title>
+<meta name="description" content="Weather forecasting, chaos and the limits of prediction. Explanatory narrative — historical, elegant, quietly dramatic">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#128218;</text></svg>">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body class="lessonpage">
+<div class="progress"><div id="bar"></div></div><header class="topbar">
+  <a class="brand" href="../index.html"><span class="brand-mark">AE</span> Advanced English</a>
+  <div class="topbar-right"><span class="counter">38 <i>/</i> 50</span>
+    <button id="theme-toggle" class="iconbtn" type="button" aria-label="Switch between light and dark">
+      <span class="ico-sun" aria-hidden="true">&#9788;</span><span class="ico-moon" aria-hidden="true">&#9789;</span>
+    </button>
+  </div>
+</header>
+<main class="wrap lesson">
+  <article>
+    <p class="eyebrow">Lesson 38</p>
+    <h1>The Butterfly and the Supercomputer</h1>
+    <dl class="meta">
+      <dt>Topic</dt><dd>Weather forecasting, chaos and the limits of prediction</dd>
+      <dt>Style &amp; Register</dt><dd>Explanatory narrative — historical, elegant, quietly dramatic</dd>
+      <dt>Level</dt><dd>C1–C2 &middot; 1102 words</dd>
+    </dl>
+    <div class="passage">
+<p>In 1922 an English mathematician published a book proposing that the weather could be calculated.</p>
+<p>The claim was not mystical. Lewis Fry Richardson's argument was that the atmosphere obeys known physical laws — the conservation of mass, momentum and energy — and that if one knew its present state with sufficient precision, one could divide the globe into cells, apply those laws numerically, and step forward in time. The future weather was not a matter of signs and intuition. It was an arithmetic problem with an enormous number of terms.</p>
+<p>To demonstrate it, he had already attempted a calculation by hand, working in intervals between ambulance duty during the war, using observations from a single day in central Europe. It took him something close to six weeks to produce a six-hour forecast. The forecast was spectacularly wrong: it predicted a pressure change many times larger than anything the atmosphere has ever produced.</p>
+<p>The method, it later emerged, was sound. The failure lay in the initial data, which contained small inconsistencies that the equations amplified into a violent and entirely fictitious storm.</p>
+<p>Richardson was undeterred. At the end of his book he sketched what would be required to keep pace with the weather rather than fall six weeks behind it: a vast hall, he suggested, shaped like a theatre, in which sixty-four thousand human computers each worked on one cell of the globe, coloured signals coordinating their pace, a conductor on a central dais directing the whole calculation like an orchestra. He estimated that this would be just sufficient to compute the weather as fast as it actually happened.</p>
+<p>The proposal was received as a charming absurdity. It was, in every respect that matters, a specification for the machines that now do exactly this — and the number of cells he proposed is modest by modern standards.</p>
+<hr />
+<p>The first electronic forecast was produced in 1950 on one of the earliest computers, which took approximately twenty-four hours to generate a twenty-four-hour prediction. That is the break-even point, and after it the arithmetic improved rapidly. Within a decade, operational numerical forecasting had begun. Within two, it had displaced the older methods.</p>
+<p>And then, in 1961, a meteorologist at an American university encountered something that no one had expected and that turned out to be more important than any improvement in the calculation.</p>
+<p>Edward Lorenz was running a simplified atmospheric model on a small machine and wanted to re-examine a particular sequence. Rather than begin again, he restarted the run partway through, typing in the numbers from an earlier printout. He went for coffee. When he returned, the new run had diverged from the old one so completely that the two bore no resemblance.</p>
+<p>The explanation was banal and its implication was not. The machine held numbers to six decimal places internally but printed three. The value he had entered differed from the value the machine had been using by about one part in ten thousand — a discrepancy far smaller than any conceivable error in a real weather observation. That difference had doubled, and doubled again, until it dominated the solution entirely.</p>
+<p>This is sensitive dependence on initial conditions, and Lorenz spent the following decade establishing that it was not an artefact of his simplifications but a property of the underlying equations. The system is entirely deterministic: no randomness enters, and the same input produces the same output every time. It is nevertheless unpredictable in the long run, because the precision required to forecast a given distance ahead grows exponentially with that distance, and exact precision is unobtainable.</p>
+<p>The talk in which he presented this carried a title that has escaped into general language and is now mostly used to mean something he did not intend. <em>Does the flap of a butterfly's wings in Brazil set off a tornado in Texas?</em> The point was not that small causes have large effects, which is unremarkable. It was that in such a system, error at any scale propagates upward into every larger scale, so that microscopic uncertainty places an absolute ceiling on how far ahead the atmosphere can be predicted at all.</p>
+<p>For weather, that ceiling appears to lie at about two weeks. It is not a limit of computing power or of observation, and no future advance will remove it. It is a property of the equations.</p>
+<hr />
+<p>What is remarkable is how much was achieved after this discovery, and how the profession's response changed the meaning of a forecast.</p>
+<p>If error growth is unavoidable, then a single prediction is a poor product, because it conveys no information about its own reliability. The response, developed through the 1990s, was to stop making one forecast. An ensemble forecast runs the model dozens of times from slightly perturbed starting conditions, each within observational uncertainty. If the members stay close together, the atmosphere is in a predictable state and confidence is high. If they diverge within two days, it is not, and no amount of insistence will make it so.</p>
+<p>This is why forecasts are now expressed as probabilities. A thirty per cent chance of rain is not evasion. It is the proportion of ensemble members that produced rain, and it carries more information than any single deterministic statement could.</p>
+<p>Meanwhile the inputs improved beyond anything Richardson could have assembled. Satellite instruments measure radiation at many wavelengths from which temperature and humidity profiles are inferred; commercial aircraft report continuously; buoys, balloons and ground stations feed in. These observations are irregular, of varying quality, and never sufficient to specify the atmosphere completely. They are combined with a short forecast from the previous cycle, in a procedure that weights each by its estimated error, to produce the best available estimate of the present state. Half the skill of modern forecasting lies in this step, and it receives almost none of the attention.</p>
+<p>The cumulative gain has been steady and is easy to overlook. A five-day forecast today is about as accurate as a three-day forecast was in the early 1990s — roughly one additional day of useful skill per decade, sustained for forty years. There are few technologies that have improved so consistently while being so widely regarded as unreliable.</p>
+<hr />
+<p>Richardson's hall of sixty-four thousand clerks was never built. What replaced it computes more cells than he imagined, with physics he did not have, on observations he could not have obtained.</p>
+<p>It still cannot see past a fortnight, and it never will, and that limit was discovered not by failure but by a man retyping three decimal places instead of six and going out for a cup of coffee.</p>
+    </div>
+    <h2 class="glosshead">Key Vocabulary</h2>
+    <dl class="gloss">
+<dt>mystical <span class="pos">adj.</span></dt><dd>relying on the inexplicable rather than on reason.</dd>
+<dt>conservation <span class="pos">n.</span></dt><dd>the principle that a quantity remains constant in a closed system.</dd>
+<dt>momentum <span class="pos">n.</span></dt><dd>the quantity of motion of a body, mass times velocity.</dd>
+<dt>inconsistency <span class="pos">n.</span></dt><dd>a conflict between two pieces of data.</dd>
+<dt>amplify <span class="pos">v.</span></dt><dd>to increase in magnitude.</dd>
+<dt>fictitious <span class="pos">adj.</span></dt><dd>not real; produced by the method rather than by nature.</dd>
+<dt>undeterred <span class="pos">adj.</span></dt><dd>not discouraged by a setback.</dd>
+<dt>dais <span class="pos">n.</span></dt><dd>a raised platform for a speaker or conductor.</dd>
+<dt>absurdity <span class="pos">n.</span></dt><dd>something ridiculous or manifestly unreasonable.</dd>
+<dt>break-even point <span class="pos">n. phr.</span></dt><dd>where cost and benefit exactly balance.</dd>
+<dt>displace <span class="pos">v.</span></dt><dd>to take the place of and push out.</dd>
+<dt>diverge <span class="pos">v.</span></dt><dd>to move progressively further apart.</dd>
+<dt>banal <span class="pos">adj.</span></dt><dd>dull and unremarkable.</dd>
+<dt>discrepancy <span class="pos">n.</span></dt><dd>a small difference between two values that should agree.</dd>
+<dt>deterministic <span class="pos">adj.</span></dt><dd>producing a fixed output from a given input, without randomness.</dd>
+<dt>exponentially <span class="pos">adv.</span></dt><dd>at a rate that multiplies rather than adds.</dd>
+<dt>ceiling <span class="pos">n.</span></dt><dd>an upper limit that cannot be exceeded.</dd>
+<dt>propagate <span class="pos">v.</span></dt><dd>to spread from one part of a system to another.</dd>
+<dt>perturbed <span class="pos">adj.</span></dt><dd>slightly altered from an original state.</dd>
+<dt>evasion <span class="pos">n.</span></dt><dd>an avoidance of giving a direct answer.</dd>
+<dt>infer <span class="pos">v.</span></dt><dd>to deduce from indirect evidence.</dd>
+<dt>cumulative <span class="pos">adj.</span></dt><dd>accumulating through successive additions.</dd>
+</dl>
+    <h2 class="glosshead">Phrases &amp; Collocations</h2>
+    <dl class="gloss">
+<dt>keep pace with</dt><dd>to proceed as fast as something else.</dd>
+<dt>in every respect that matters</dt><dd>in all the important ways.</dd>
+<dt>bear no resemblance</dt><dd>to be completely unlike.</dd>
+<dt>one part in ten thousand</dt><dd>a precise way of expressing a tiny proportion.</dd>
+<dt>escape into general language</dt><dd>of a technical phrase, to enter common speech with altered meaning.</dd>
+<dt>place a ceiling on</dt><dd>to impose an absolute upper limit upon.</dd>
+</dl>
+  </article>
+  <nav class="pagenav"><a class="pn prev" href="37.html"><span>Previous</span><b>The Machine That Wrote the Machine</b></a>
+<a class="pn next" href="39.html"><span>Next</span><b>The Tyranny of the Clock You Cannot See</b></a></nav>
+  <p class="backlink"><a href="../index.html">&larr; All fifty lessons</a></p>
+</main>
+<footer class="foot">
+  <p><strong>Advanced English &mdash; Reading &amp; Vocabulary.</strong>
+     Fifty original passages at CEFR C1&ndash;C2.</p>
+  <p class="muted">Source and PDF on <a href="https://github.com/donaldmorry/English-Learning-Comprehension-Advanced">GitHub</a>.</p>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

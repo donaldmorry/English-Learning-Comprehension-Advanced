@@ -1,0 +1,352 @@
+[
+ {
+  "n": 1,
+  "title": "Money as Software",
+  "topic": "Central bank digital currency and the architecture of payment systems",
+  "style": "Formal policy explainer \u2014 neutral, definitional, scrupulously balanced",
+  "words": 1049
+ },
+ {
+  "n": 2,
+  "title": "Bringing Back the Thunder Beast",
+  "topic": "De-extinction, rewilding and ecological restoration",
+  "style": "Narrative non-fiction \u2014 scene-driven reportage, present tense, observed detail",
+  "words": 1007
+ },
+ {
+  "n": 3,
+  "title": "Easy Is Hard",
+  "topic": "Humanoid robots and Moravec's paradox",
+  "style": "Analytical essay \u2014 contrarian, paradox-driven, rhetorical questions",
+  "words": 1111
+ },
+ {
+  "n": 4,
+  "title": "The Ethics of Repair",
+  "topic": "Conservation, restoration and what authenticity means",
+  "style": "Reflective formal essay \u2014 philosophical, balanced, first-person plural",
+  "words": 1147
+ },
+ {
+  "n": 5,
+  "title": "The Organ You Were Not Born With",
+  "topic": "The gut microbiome and the gut\u2013brain axis",
+  "style": "Popular-science feature \u2014 semi-formal, second person, conversational authority",
+  "words": 1012
+ },
+ {
+  "n": 6,
+  "title": "A Thousand Small Stupidities",
+  "topic": "Swarm robotics, stigmergy and emergent behaviour",
+  "style": "Comparative science writing \u2014 playful, structurally patterned, analogical",
+  "words": 1136
+ },
+ {
+  "n": 7,
+  "title": "Everything, All at Once",
+  "topic": "The transformer architecture and attention mechanisms",
+  "style": "Mechanism explainer \u2014 precise, step-by-step, diagrammatic",
+  "words": 1067
+ },
+ {
+  "n": 8,
+  "title": "The Shape of the Problem",
+  "topic": "Protein folding, structure prediction and AlphaFold",
+  "style": "Analogy-led explainer \u2014 patient, sequential, one extended figure",
+  "words": 1024
+ },
+ {
+  "n": 9,
+  "title": "Thirty Years Away, Forever",
+  "topic": "Fusion energy and the gap between demonstration and power",
+  "style": "Feature journalism \u2014 scene, history, technical exposition, earned scepticism",
+  "words": 1183
+ },
+ {
+  "n": 10,
+  "title": "Marginal Gains",
+  "topic": "Sports science and the engineering of performance",
+  "style": "Interview-based profile \u2014 quoted speech, informal, interruptive",
+  "words": 1162
+ },
+ {
+  "n": 11,
+  "title": "Nine Hours in the Killifish Room",
+  "topic": "The biology of ageing and cellular senescence",
+  "style": "Long-form laboratory profile \u2014 observational, quoted speech, humane",
+  "words": 1048
+ },
+ {
+  "n": 12,
+  "title": "The Century That Forgot Itself",
+  "topic": "Digital preservation, format obsolescence and data decay",
+  "style": "Reflective essay \u2014 elegiac, long cadences, first-person plural",
+  "words": 1135
+ },
+ {
+  "n": 13,
+  "title": "The Microbes in Your Kitchen",
+  "topic": "Fermentation chemistry and controlled spoilage",
+  "style": "Enthusiast's informal essay \u2014 chatty, contractions, direct address, jokes",
+  "words": 1133
+ },
+ {
+  "n": 14,
+  "title": "The Architecture of Choice",
+  "topic": "Behavioural economics, defaults and the limits of nudging",
+  "style": "Experimental research report \u2014 cautious, self-correcting",
+  "words": 1042
+ },
+ {
+  "n": 15,
+  "title": "The Forest Was a City",
+  "topic": "Lidar archaeology and the rewriting of tropical prehistory",
+  "style": "Discovery reportage \u2014 revelatory structure, withheld conclusion",
+  "words": 1091
+ },
+ {
+  "n": 16,
+  "title": "The Thirsty Cathedral",
+  "topic": "Data centres, electricity and water",
+  "style": "Investigative journalism \u2014 adversarial, document-driven, sceptical of official statements",
+  "words": 1111
+ },
+ {
+  "n": 17,
+  "title": "Machines Without Bones",
+  "topic": "Soft robotics and compliant actuation",
+  "style": "Academic survey paper \u2014 abstract-led, passive-dominant",
+  "words": 1034
+ },
+ {
+  "n": 18,
+  "title": "Reasonable Degree of Certainty",
+  "topic": "Forensic science and the limits of expert comparison evidence",
+  "style": "Investigative-critical \u2014 measured, forensic cadence, precise about language",
+  "words": 1173
+ },
+ {
+  "n": 19,
+  "title": "Who Owns the Commons?",
+  "topic": "Open-source software, maintenance and governance",
+  "style": "Opinion essay \u2014 argumentative, concessive, professionally polemical",
+  "words": 1069
+ },
+ {
+  "n": 20,
+  "title": "A Letter to a Founder Who Just Raised",
+  "topic": "Venture capital, portfolio mathematics and incentive alignment",
+  "style": "Epistolary \u2014 direct address, candid, semi-formal, contractions permitted",
+  "words": 1056
+ },
+ {
+  "n": 21,
+  "title": "Farming Upwards",
+  "topic": "Vertical farming and controlled-environment agriculture",
+  "style": "Investor-facing analysis \u2014 hard-headed, thesis-driven, willing to conclude",
+  "words": 1088
+ },
+ {
+  "n": 22,
+  "title": "The Ghost in the Ledger",
+  "topic": "Stablecoins and the settlement layer of digital asset markets",
+  "style": "Investigative financial analysis \u2014 forensic, sceptical, question-driven",
+  "words": 1153
+ },
+ {
+  "n": 23,
+  "title": "The Difficulty That Helps You",
+  "topic": "Learning science \u2014 spacing, retrieval and desirable difficulty",
+  "style": "Instructional semi-formal \u2014 direct address, evidence-led, immediately applicable",
+  "words": 1117
+ },
+ {
+  "n": 24,
+  "title": "Four Kilometres Down",
+  "topic": "Deep-sea mining of polymetallic nodules",
+  "style": "Balanced argumentative essay \u2014 steel-manning both positions, explicit about uncertainty",
+  "words": 1028
+ },
+ {
+  "n": 25,
+  "title": "The Farm That Watches Itself",
+  "topic": "Drones, sensing and precision agriculture",
+  "style": "Rural reportage \u2014 plain, sensory, quoted speech, semi-formal",
+  "words": 1074
+ },
+ {
+  "n": 26,
+  "title": "Microseconds",
+  "topic": "Algorithmic trading and market microstructure",
+  "style": "Technical journalism \u2014 fast, concrete, short sentences, scene and number",
+  "words": 1155
+ },
+ {
+  "n": 27,
+  "title": "Letters from Seventy-Five South",
+  "topic": "Overwintering at an Antarctic research station",
+  "style": "Epistolary / diary \u2014 intimate, seasonal, unguarded",
+  "words": 1209
+ },
+ {
+  "n": 28,
+  "title": "The Letter and the Pencil",
+  "topic": "Gene editing, from CRISPR cuts to base editing",
+  "style": "Academic review article \u2014 heavily hedged, impersonal, section-numbered",
+  "words": 984
+ },
+ {
+  "n": 29,
+  "title": "Intelligence the Size of a Grain of Rice",
+  "topic": "Edge computing and machine learning on microcontrollers",
+  "style": "Technical white paper \u2014 clipped, heavily headed, impersonal, bulleted",
+  "words": 1046
+ },
+ {
+  "n": 30,
+  "title": "The Invisible Craft",
+  "topic": "Typography and the engineering of the printed page",
+  "style": "Design-history essay \u2014 precise, aesthetic, quietly opinionated",
+  "words": 1155
+ },
+ {
+  "n": 31,
+  "title": "The Cost of Agreeing",
+  "topic": "Blockchain consensus mechanisms \u2014 proof of work and proof of stake",
+  "style": "Comparative technical analysis \u2014 problem-first, rigorous",
+  "words": 1081
+ },
+ {
+  "n": 32,
+  "title": "The Door That Argues With You",
+  "topic": "Human\u2013computer interaction and the design of everyday systems",
+  "style": "Design critique \u2014 evaluative, ironic, second person, short punchy sentences",
+  "words": 1041
+ },
+ {
+  "n": 33,
+  "title": "Inventing Noon",
+  "topic": "Railways, the telegraph and the standardisation of time",
+  "style": "Historical narrative \u2014 anecdotal, causal, wry",
+  "words": 1174
+ },
+ {
+  "n": 34,
+  "title": "Eleven Seconds per Tote",
+  "topic": "Warehouse automation and fulfilment logistics",
+  "style": "Operations report \u2014 numerate, declarative, unsentimental, metric-driven",
+  "words": 1029
+ },
+ {
+  "n": 35,
+  "title": "Subtracting Carbon",
+  "topic": "Carbon capture, removal and the arithmetic of offsetting",
+  "style": "Sceptical analytical essay \u2014 numerate, definition-driven, unsparing",
+  "words": 1081
+ },
+ {
+  "n": 36,
+  "title": "Notes from the Nursery Line",
+  "topic": "Coral bleaching and reef restoration",
+  "style": "Informal field notes \u2014 first person, dated entries, fragmentary syntax",
+  "words": 1035
+ },
+ {
+  "n": 37,
+  "title": "The Machine That Wrote the Machine",
+  "topic": "Compilers and the history of abstraction",
+  "style": "Historical essay \u2014 long periodic sentences, dry wit, understatement",
+  "words": 1086
+ },
+ {
+  "n": 38,
+  "title": "The Butterfly and the Supercomputer",
+  "topic": "Weather forecasting, chaos and the limits of prediction",
+  "style": "Explanatory narrative \u2014 historical, elegant, quietly dramatic",
+  "words": 1102
+ },
+ {
+  "n": 39,
+  "title": "The Tyranny of the Clock You Cannot See",
+  "topic": "Circadian biology, sleep and biological timing",
+  "style": "Semi-formal advisory essay \u2014 persuasive, warm, second person",
+  "words": 1057
+ },
+ {
+  "n": 40,
+  "title": "Walking a City That Was Drawn",
+  "topic": "Urban design and the behaviour of streets",
+  "style": "Walking essay / travelogue \u2014 lyrical, first person, sensory, digressive",
+  "words": 1133
+ },
+ {
+  "n": 41,
+  "title": "The Crowded Sky",
+  "topic": "Orbital debris and space traffic coordination",
+  "style": "Institutional briefing \u2014 sober, numbered, procedural, obligation-focused",
+  "words": 1032
+ },
+ {
+  "n": 42,
+  "title": "Growing the Factory",
+  "topic": "Synthetic biology, precision fermentation and engineered materials",
+  "style": "Commercial due-diligence note \u2014 numerate, headed, unsentimental",
+  "words": 1017
+ },
+ {
+  "n": 43,
+  "title": "Materials That Break the Rules",
+  "topic": "Graphene, metamaterials and structure-derived properties",
+  "style": "Academic taxonomy \u2014 definitional, classificatory, carefully qualified",
+  "words": 1005
+ },
+ {
+  "n": 44,
+  "title": "Steady Hands",
+  "topic": "Robot-assisted surgery",
+  "style": "Clinical narrative case study \u2014 restrained, procedural, present tense",
+  "words": 1069
+ },
+ {
+  "n": 45,
+  "title": "Renting the Future",
+  "topic": "Subscription economics and the market for attention",
+  "style": "Analytical business essay \u2014 cool, systemic, argument by mechanism",
+  "words": 1109
+ },
+ {
+  "n": 46,
+  "title": "The Words We Have to Borrow",
+  "topic": "Translation, lexical gaps and what languages oblige you to say",
+  "style": "Linguistics essay \u2014 erudite, example-dense, gently corrective",
+  "words": 1171
+ },
+ {
+  "n": 47,
+  "title": "Secrets with an Expiry Date",
+  "topic": "Cryptography, from mechanical ciphers to post-quantum standards",
+  "style": "Narrative history \u2014 suspense structure, short paragraphs, delayed revelation",
+  "words": 1126
+ },
+ {
+  "n": 48,
+  "title": "What a Battery Actually Is",
+  "topic": "Lithium-ion chemistry and the battery supply chain",
+  "style": "Industrial-technical essay \u2014 concrete, material, process-focused",
+  "words": 1157
+ },
+ {
+  "n": 49,
+  "title": "Just in Case",
+  "topic": "Supply chain design, inventory strategy and resilience",
+  "style": "Strategy case study \u2014 situation, complication, recommendation",
+  "words": 1054
+ },
+ {
+  "n": 50,
+  "title": "The Long Attention",
+  "topic": "Concentration, expertise and the making of a skilled person",
+  "style": "Closing essay \u2014 cumulative, rhetorical, direct address, deliberately unhurried",
+  "words": 1214
+ }
+]

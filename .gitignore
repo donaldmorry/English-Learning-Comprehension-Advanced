@@ -1,0 +1,7 @@
+# generated intermediate — the committed output is docs/
+build/book.html
+
+# editor / OS noise
+.DS_Store
+*.swp
+*~
