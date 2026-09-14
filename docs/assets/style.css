@@ -36,13 +36,18 @@
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; background: var(--desk); }
+html {
+  /* One number sets the whole type scale. Every size below is a
+     ratio of it, so the page rescales without touching anything else. */
+  font-size: 7.33pt;
+  -webkit-text-size-adjust: 100%; background: var(--desk);
+}
 body {
   margin: 0;
   background: var(--desk);
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 11pt;
+  font-size: 1.0rem;
   line-height: 1.38;
   text-rendering: optimizeLegibility;
 }
@@ -69,7 +74,7 @@ img { max-width: 100%; }
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 6mm; padding-bottom: 1.5mm; margin-bottom: 6mm;
   border-bottom: .5pt solid var(--rule);
-  font-size: 7.5pt; letter-spacing: .06em; text-transform: uppercase;
+  font-size: 0.682rem; letter-spacing: .06em; text-transform: uppercase;
   color: var(--ink-faint);
 }
 .runhead a.title-link { color: var(--ink-faint); text-decoration: none; }
@@ -91,32 +96,32 @@ img { max-width: 100%; }
 }
 
 /* ---------------------------------------------- headings */
-h1 { font-size: 17pt; font-weight: 700; line-height: 1.16; margin: 0 0 2mm; }
-h2 { font-size: 12pt; font-weight: 700; line-height: 1.25; margin: 7mm 0 2mm; }
-h3 { font-size: 11pt; font-weight: 700; margin: 5mm 0 1.5mm; }
+h1 { font-size: 1.545rem; font-weight: 700; line-height: 1.16; margin: 0 0 2mm; }
+h2 { font-size: 1.091rem; font-weight: 700; line-height: 1.25; margin: 7mm 0 2mm; }
+h3 { font-size: 1.0rem; font-weight: 700; margin: 5mm 0 1.5mm; }
 
 .label {
-  font-size: 8pt; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 0.727rem; letter-spacing: .12em; text-transform: uppercase;
   color: var(--ink-faint); margin: 0 0 1.5mm;
 }
-.abstract { font-size: 11pt; color: var(--ink-soft); margin: 0 0 4mm;
+.abstract { font-size: 1.0rem; color: var(--ink-soft); margin: 0 0 4mm;
             text-align: justify; hyphens: auto; }
-.muted { color: var(--ink-faint); font-size: 9.5pt; }
+.muted { color: var(--ink-faint); font-size: 0.864rem; }
 .rule-firm { border: 0; border-top: 1pt solid var(--rule-firm); margin: 4mm 0; }
 .rule-thin { border: 0; border-top: .5pt solid var(--rule); margin: 6mm 0; }
 
 /* ---------------------------------------------- title page */
-.frontmatter h1 { font-size: 19pt; }
+.frontmatter h1 { font-size: 1.727rem; }
 .colophon {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 6mm;
   margin: 4mm 0; padding: 2.5mm 0;
   border-top: .5pt solid var(--rule); border-bottom: .5pt solid var(--rule);
 }
 .colophon div { display: flex; justify-content: space-between; gap: 3mm;
-                font-size: 9.5pt; }
+                font-size: 0.864rem; }
 .colophon .k { color: var(--ink-faint); }
 .colophon .v { font-weight: 700; }
-.actions { margin: 4mm 0 0; font-size: 10pt; line-height: 1.9; }
+.actions { margin: 4mm 0 0; font-size: 0.909rem; line-height: 1.9; }
 .actions a { margin-right: 6mm; white-space: nowrap; }
 .standfirst { margin: 3mm 0 0; text-align: justify; hyphens: auto;
               color: var(--ink-soft); }
@@ -126,7 +131,7 @@ h3 { font-size: 11pt; font-weight: 700; margin: 5mm 0 1.5mm; }
 .contents-head { margin: 7mm 0 2mm; }
 .contents-head h2 { margin: 0 0 2mm; }
 #filter {
-  font-family: var(--serif); font-size: 10pt; padding: 1mm 2mm;
+  font-family: var(--serif); font-size: 0.909rem; padding: 1mm 2mm;
   border: .5pt solid var(--rule); background: var(--paper); color: var(--ink);
   width: 100%; border-radius: 0;
 }
@@ -138,12 +143,12 @@ ol.toc li {
 }
 ol.toc li:last-child { border-bottom: 0; }
 ol.toc .n { display: inline-block; width: 9mm; text-indent: 0;
-            color: var(--ink-faint); font-size: 9.5pt; }
+            color: var(--ink-faint); font-size: 0.864rem; }
 ol.toc .t { font-weight: 700; color: var(--ink); text-decoration: none; }
 ol.toc .t:hover { text-decoration: underline; }
 ol.toc .sub, ol.toc .reg {
   display: block; text-indent: 0; margin-left: 0;
-  font-size: 9.5pt; line-height: 1.3;
+  font-size: 0.864rem; line-height: 1.3;
 }
 ol.toc .sub { color: var(--ink-soft); }
 ol.toc .reg { color: var(--ink-faint); font-style: italic; }
@@ -153,7 +158,7 @@ ol.toc .reg { color: var(--ink-faint); font-style: italic; }
 dl.meta {
   margin: 3mm 0 5mm; padding: 2mm 0;
   border-top: 1pt solid var(--rule-firm); border-bottom: .5pt solid var(--rule);
-  font-size: 9.5pt; line-height: 1.35;
+  font-size: 0.864rem; line-height: 1.35;
 }
 dl.meta div { display: flex; gap: 3mm; margin-bottom: .8mm; }
 dl.meta dt { flex: 0 0 18mm; color: var(--ink-faint); }
@@ -162,7 +167,7 @@ dl.meta dd { margin: 0; color: var(--ink-soft); flex: 1; }
 .passage { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
 .passage p { margin: 0 0 2.6mm; }
 .passage h2, .passage h3 {
-  font-size: 11pt; font-weight: 700; margin: 5mm 0 1.5mm;
+  font-size: 1.0rem; font-weight: 700; margin: 5mm 0 1.5mm;
   text-align: left; hyphens: none;
 }
 .passage em { font-style: italic; }
@@ -173,7 +178,7 @@ dl.meta dd { margin: 0; color: var(--ink-soft); flex: 1; }
 .passage li { margin-bottom: 1.2mm; }
 .passage blockquote { margin: 3mm 0 3mm 6mm; color: var(--ink-soft); }
 .passage table {
-  border-collapse: collapse; font-size: 9pt; margin: 3mm 0;
+  border-collapse: collapse; font-size: 0.818rem; margin: 3mm 0;
   width: 100%; text-align: left; hyphens: none;
 }
 .passage th, .passage td {
@@ -182,19 +187,19 @@ dl.meta dd { margin: 0; color: var(--ink-soft); flex: 1; }
 }
 .passage thead th {
   border-bottom: .75pt solid var(--rule-firm); font-weight: 700;
-  font-size: 8pt; letter-spacing: .05em; text-transform: uppercase;
+  font-size: 0.727rem; letter-spacing: .05em; text-transform: uppercase;
   color: var(--ink-faint);
 }
 .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* ---------------------------------------------- glossary */
 .glosshead {
-  font-size: 8pt; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 0.727rem; letter-spacing: .12em; text-transform: uppercase;
   font-weight: 400; color: var(--ink-faint);
   margin: 7mm 0 2.5mm; padding-top: 1.5mm;
   border-top: 1pt solid var(--rule-firm);
 }
-dl.gloss { margin: 0; font-size: 10pt; line-height: 1.34; }
+dl.gloss { margin: 0; font-size: 0.909rem; line-height: 1.34; }
 dl.gloss div.g { margin: 0 0 1.8mm; padding-left: 5mm; text-indent: -5mm; }
 dl.gloss dt { display: inline; font-weight: 700; }
 dl.gloss dd { display: inline; margin: 0; color: var(--ink-soft); }
@@ -210,22 +215,22 @@ dl.gloss dd::before { content: "  "; }
 nav.pagenav {
   display: flex; justify-content: space-between; gap: 6mm;
   margin: 8mm 0 0; padding-top: 2.5mm;
-  border-top: .5pt solid var(--rule); font-size: 9.5pt;
+  border-top: .5pt solid var(--rule); font-size: 0.864rem;
 }
 nav.pagenav .pn { min-width: 0; flex: 1; }
 nav.pagenav .pn.next { text-align: right; }
 nav.pagenav .k {
-  display: block; font-size: 8pt; letter-spacing: .1em;
+  display: block; font-size: 0.727rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--ink-faint); margin-bottom: .5mm;
 }
 nav.pagenav a { color: var(--ink); text-decoration: none; }
 nav.pagenav a:hover { text-decoration: underline; }
-.backlink { margin-top: 5mm; font-size: 9.5pt; }
+.backlink { margin-top: 5mm; font-size: 0.864rem; }
 
 footer.foot {
   margin-top: 8mm; padding-top: 2.5mm;
   border-top: .5pt solid var(--rule);
-  font-size: 8.5pt; color: var(--ink-faint); line-height: 1.35;
+  font-size: 0.773rem; color: var(--ink-faint); line-height: 1.35;
 }
 footer.foot p { margin: 0 0 .8mm; }
 
